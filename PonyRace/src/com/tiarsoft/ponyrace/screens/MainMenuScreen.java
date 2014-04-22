@@ -2,8 +2,6 @@ package com.tiarsoft.ponyrace.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
-import com.badlogic.gdx.graphics.GL10;
-import com.badlogic.gdx.graphics.GLCommon;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
@@ -55,7 +53,8 @@ public class MainMenuScreen extends Screens {
 		oAssets.skeletonMenuTitle.setY(370);
 
 		if (game.gameServiceHandler instanceof GoogleGameServicesHandler) {
-			if (Settings.statTimesPlayed == 0 && !game.gameServiceHandler.isSignedInGPGS())
+			if (Settings.statTimesPlayed == 0
+					&& !game.gameServiceHandler.isSignedInGPGS())
 				game.signin.showDialogSignIn();
 		}
 	}
@@ -68,13 +67,16 @@ public class MainMenuScreen extends Screens {
 
 			public void clicked(InputEvent event, float x, float y) {
 				btJugar2.wasSelected = true;
-				btJugar2.addAction(Actions.sequence(Actions.delay(.2f), btJugar2.accionInicial, Actions.run(new Runnable() {
-					@Override
-					public void run() {
-						MainMenuScreen.this.game.setScreen(new LoadingScreen(game, WorldMapTiledScreen.class));
+				btJugar2.addAction(Actions.sequence(Actions.delay(.2f),
+						btJugar2.accionInicial, Actions.run(new Runnable() {
+							@Override
+							public void run() {
+								MainMenuScreen.this.game
+										.setScreen(new LoadingScreen(game,
+												WorldMapTiledScreen.class));
 
-					}
-				})));
+							}
+						})));
 			};
 		});
 
@@ -84,38 +86,45 @@ public class MainMenuScreen extends Screens {
 
 			public void clicked(InputEvent event, float x, float y) {
 				btMore.wasSelected = true;
-				btMore.addAction(Actions.sequence(Actions.delay(.2f), btMore.accionInicial, Actions.run(new Runnable() {
-					@Override
-					public void run() {
-						game.reqHandler.showMoreGames();
+				btMore.addAction(Actions.sequence(Actions.delay(.2f),
+						btMore.accionInicial, Actions.run(new Runnable() {
+							@Override
+							public void run() {
+								game.reqHandler.showMoreGames();
 
-					}
-				})));
+							}
+						})));
 
 			};
 		});
 
-		btLeaderBoard = new BotonNube(oAssets.nube, "LeaderBoards", oAssets.fontChco);
+		btLeaderBoard = new BotonNube(oAssets.nube, "LeaderBoards",
+				oAssets.fontChco);
 		btLeaderBoard.setSize(290, 140);
 		btLeaderBoard.addListener(new ClickListener() {
 
 			public void clicked(InputEvent event, float x, float y) {
 				btLeaderBoard.wasSelected = true;
-				btLeaderBoard.addAction(Actions.sequence(Actions.delay(.2f), btLeaderBoard.accionInicial, Actions.run(new Runnable() {
-					@Override
-					public void run() {
-						if (game.gameServiceHandler instanceof GoogleGameServicesHandler) {
-							if (!game.gameServiceHandler.isSignedInGPGS())
-								game.signin.showDialogSignIn();
-							else
-								game.setScreen(new LoadingScreen(game, LeaderboardChooseScreen.class));
-						}
-						else {
-							game.setScreen(new LoadingScreen(game, LeaderboardChooseScreen.class));
-						}
+				btLeaderBoard.addAction(Actions.sequence(Actions.delay(.2f),
+						btLeaderBoard.accionInicial,
+						Actions.run(new Runnable() {
+							@Override
+							public void run() {
+								if (game.gameServiceHandler instanceof GoogleGameServicesHandler) {
+									if (!game.gameServiceHandler
+											.isSignedInGPGS())
+										game.signin.showDialogSignIn();
+									else
+										game.setScreen(new LoadingScreen(game,
+												LeaderboardChooseScreen.class));
+								}
+								else {
+									game.setScreen(new LoadingScreen(game,
+											LeaderboardChooseScreen.class));
+								}
 
-					}
-				})));
+							}
+						})));
 			};
 		});
 
@@ -125,16 +134,17 @@ public class MainMenuScreen extends Screens {
 		btFacebook.addListener(new ClickListener() {
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
-				btFacebook.addAction(Actions.sequence(Actions.delay(1f), Actions.run(new Runnable() {
-					@Override
-					public void run() {
-						if (!Settings.seDioLike) {
-							Settings.seDioLike = true;
-							Settings.sumarMonedas(Settings.MONEDAS_REGALO_FACEBOOK);
-							Settings.guardar();
-						}
-					}
-				})));
+				btFacebook.addAction(Actions.sequence(Actions.delay(1f),
+						Actions.run(new Runnable() {
+							@Override
+							public void run() {
+								if (!Settings.seDioLike) {
+									Settings.seDioLike = true;
+									Settings.sumarMonedas(Settings.MONEDAS_REGALO_FACEBOOK);
+									Settings.guardar();
+								}
+							}
+						})));
 				game.reqHandler.showFacebook();
 
 				// // --
@@ -143,7 +153,8 @@ public class MainMenuScreen extends Screens {
 			}
 		});
 
-		btSonido = new ImageButton(oAssets.btSonidoOff, null, oAssets.btSonidoON);
+		btSonido = new ImageButton(oAssets.btSonidoOff, null,
+				oAssets.btSonidoON);
 		btSonido.setSize(60, 60);
 		btSonido.setPosition(5, 5);
 		btSonido.setChecked(Settings.isSonidoON);
@@ -155,7 +166,8 @@ public class MainMenuScreen extends Screens {
 			}
 		});
 
-		btMusica = new ImageButton(oAssets.btMusicaOff, null, oAssets.btMusicaON);
+		btMusica = new ImageButton(oAssets.btMusicaOff, null,
+				oAssets.btMusicaON);
 		btMusica.setSize(60, 60);
 		btMusica.setPosition(70, 2);
 		btMusica.setChecked(Settings.isMusicaON);
@@ -178,10 +190,6 @@ public class MainMenuScreen extends Screens {
 	@Override
 	public void draw(float delta) {
 
-		GLCommon gl = Gdx.gl;
-		gl.glClearColor(0, 0, 0, 0);
-		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
-
 		guiCam.update();
 		batcher.setProjectionMatrix(guiCam.combined);
 
@@ -200,7 +208,8 @@ public class MainMenuScreen extends Screens {
 	}
 
 	private void renderFlagTitle(float delta) {
-		oAssets.animationMenuTitle.apply(oAssets.skeletonMenuTitle, ScreenlastStatetime, ScreenStateTime, true, null);
+		oAssets.animationMenuTitle.apply(oAssets.skeletonMenuTitle,
+				ScreenlastStatetime, ScreenStateTime, true, null);
 		oAssets.skeletonMenuTitle.updateWorldTransform();
 		oAssets.skeletonMenuTitle.update(delta);
 		skelrender.draw(batcher, oAssets.skeletonMenuTitle);

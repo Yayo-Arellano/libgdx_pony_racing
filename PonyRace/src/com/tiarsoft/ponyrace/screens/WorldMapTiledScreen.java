@@ -8,8 +8,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.GL10;
-import com.badlogic.gdx.graphics.GLCommon;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
@@ -70,21 +68,27 @@ public class WorldMapTiledScreen extends Screens implements GestureListener {
 	public WorldMapTiledScreen(final MainPonyRace game) {
 		super(game);
 		oRan = new Random();
-		tiledRender = new OrthogonalTiledMapRenderer(game.oAssets.tiledWorldMap, unitScale);
-		guiCam = new OrthographicCamera(SCREEN_WIDTH * unitScale, SCREEN_HEIGHT * unitScale);
-		guiCam.position.set(SCREEN_WIDTH * unitScale / 2f, SCREEN_HEIGHT * unitScale / 2f, 0);
+		tiledRender = new OrthogonalTiledMapRenderer(
+				game.oAssets.tiledWorldMap, unitScale);
+		guiCam = new OrthographicCamera(SCREEN_WIDTH * unitScale, SCREEN_HEIGHT
+				* unitScale);
+		guiCam.position.set(SCREEN_WIDTH * unitScale / 2f, SCREEN_HEIGHT
+				* unitScale / 2f, 0);
 
 		CAM_MIN_X = SCREEN_WIDTH * unitScale / 2f;
 		CAM_MIN_Y = SCREEN_HEIGHT * unitScale / 2f;
 
-		CAM_MAX_X = Integer.valueOf(game.oAssets.tiledWorldMap.getProperties().get("tamanoMapaX", String.class));
+		CAM_MAX_X = Integer.valueOf(game.oAssets.tiledWorldMap.getProperties()
+				.get("tamanoMapaX", String.class));
 		CAM_MAX_X -= SCREEN_WIDTH * unitScale / 2f;
 
-		CAM_MAX_Y = Integer.valueOf(game.oAssets.tiledWorldMap.getProperties().get("tamanoMapaY", String.class));
+		CAM_MAX_Y = Integer.valueOf(game.oAssets.tiledWorldMap.getProperties()
+				.get("tamanoMapaY", String.class));
 		CAM_MAX_Y -= SCREEN_HEIGHT * unitScale / 2f;
 
 		float x = (oRan.nextFloat() * SCREEN_WIDTH * unitScale - 2) + 2;
-		float y = (oRan.nextFloat() * SCREEN_HEIGHT * unitScale / 2) + SCREEN_HEIGHT * unitScale / 2 - 1f;
+		float y = (oRan.nextFloat() * SCREEN_HEIGHT * unitScale / 2)
+				+ SCREEN_HEIGHT * unitScale / 2 - 1f;
 
 		// Settings.isEnabledSecretWorld = true;
 		secretWorldBounds = new Rectangle(x - 1f, y, 2f, 2f);
@@ -102,12 +106,14 @@ public class WorldMapTiledScreen extends Screens implements GestureListener {
 
 			public void clicked(InputEvent event, float x, float y) {
 				btBack.wasSelected = true;
-				btBack.addAction(Actions.sequence(Actions.delay(.2f), btBack.accionInicial, Actions.run(new Runnable() {
-					@Override
-					public void run() {
-						game.setScreen(new LoadingScreen(game, MainMenuScreen.class));
-					}
-				})));
+				btBack.addAction(Actions.sequence(Actions.delay(.2f),
+						btBack.accionInicial, Actions.run(new Runnable() {
+							@Override
+							public void run() {
+								game.setScreen(new LoadingScreen(game,
+										MainMenuScreen.class));
+							}
+						})));
 			};
 
 		});
@@ -120,12 +126,14 @@ public class WorldMapTiledScreen extends Screens implements GestureListener {
 
 			public void clicked(InputEvent event, float x, float y) {
 				btTienda.wasSelected = true;
-				btTienda.addAction(Actions.sequence(Actions.delay(.2f), btTienda.accionInicial, Actions.run(new Runnable() {
-					@Override
-					public void run() {
-						game.setScreen(new LoadingScreen(game, ShopScreen.class));
-					}
-				})));
+				btTienda.addAction(Actions.sequence(Actions.delay(.2f),
+						btTienda.accionInicial, Actions.run(new Runnable() {
+							@Override
+							public void run() {
+								game.setScreen(new LoadingScreen(game,
+										ShopScreen.class));
+							}
+						})));
 			};
 
 		});
@@ -167,13 +175,15 @@ public class WorldMapTiledScreen extends Screens implements GestureListener {
 		stage.addActor(contDif);
 
 		gestureDetector = new GestureDetector(20, 0.5f, 2, 0.15f, this);
-		InputMultiplexer input = new InputMultiplexer(stage, gestureDetector, this);
+		InputMultiplexer input = new InputMultiplexer(stage, gestureDetector,
+				this);
 		Gdx.input.setInputProcessor(input);
 
 	}
 
 	private void inicializarNiveles() {
-		MapLayer layer = game.oAssets.tiledWorldMap.getLayers().get("animaciones");
+		MapLayer layer = game.oAssets.tiledWorldMap.getLayers().get(
+				"animaciones");
 		if (layer == null) {
 			Gdx.app.log("", "layer animaciones no existe");
 			return;
@@ -190,7 +200,8 @@ public class WorldMapTiledScreen extends Screens implements GestureListener {
 			float x = (rectangle.x + rectangle.width * 0.5f) * unitScale;
 			float y = (rectangle.y - rectangle.height * 0.5f) * unitScale;
 
-			arrMundos.add(new Mundos(new Vector2(x, y), new Rectangle(x - .75f, y - .85f, 1.5f, 1.5f), level));
+			arrMundos.add(new Mundos(new Vector2(x, y), new Rectangle(x - .75f,
+					y - .85f, 1.5f, 1.5f), level));
 
 		}
 
@@ -211,7 +222,8 @@ public class WorldMapTiledScreen extends Screens implements GestureListener {
 	}
 
 	/**
-	 * Cambia la dificultad si recibe +1 se increment la dificultad y en caso de llegar al final pues le da la vuelta y se regresa al facil. Si recibe un -1 se decrementa la difucltad y en caso de llegar al inicio le da la vuelta y se pone en superHard
+	 * Cambia la dificultad si recibe +1 se increment la dificultad y en caso de llegar al final pues le da la vuelta y se regresa al facil. Si recibe un -1 se decrementa la difucltad y en caso de
+	 * llegar al inicio le da la vuelta y se pone en superHard
 	 * 
 	 * @param cambio
 	 */
@@ -228,22 +240,22 @@ public class WorldMapTiledScreen extends Screens implements GestureListener {
 
 	public void lblSetDificultad() {
 		switch (Settings.dificultadActual) {
-			case Settings.DIFICULTAD_EASY:
-				lblDificultadActual.setText("Easy");
-				lblDificultadActual.getStyle().fontColor = Color.GREEN;
-				break;
-			case Settings.DIFICULTAD_NORMAL:
-				lblDificultadActual.setText("Normal");
-				lblDificultadActual.getStyle().fontColor = Color.YELLOW;
-				break;
-			case Settings.DIFICULTAD_HARD:
-				lblDificultadActual.setText("Hard");
-				lblDificultadActual.getStyle().fontColor = Color.ORANGE;
-				break;
-			case Settings.DIFICULTAD_SUPERHARD:
-				lblDificultadActual.setText("20% Cooler");
-				lblDificultadActual.getStyle().fontColor = Color.RED;
-				break;
+		case Settings.DIFICULTAD_EASY:
+			lblDificultadActual.setText("Easy");
+			lblDificultadActual.getStyle().fontColor = Color.GREEN;
+			break;
+		case Settings.DIFICULTAD_NORMAL:
+			lblDificultadActual.setText("Normal");
+			lblDificultadActual.getStyle().fontColor = Color.YELLOW;
+			break;
+		case Settings.DIFICULTAD_HARD:
+			lblDificultadActual.setText("Hard");
+			lblDificultadActual.getStyle().fontColor = Color.ORANGE;
+			break;
+		case Settings.DIFICULTAD_SUPERHARD:
+			lblDificultadActual.setText("20% Cooler");
+			lblDificultadActual.getStyle().fontColor = Color.RED;
+			break;
 		}
 	}
 
@@ -255,9 +267,6 @@ public class WorldMapTiledScreen extends Screens implements GestureListener {
 
 	@Override
 	public void draw(float delta) {
-		GLCommon gl = Gdx.gl;
-		gl.glClearColor(0, 0, 0, 0);
-		gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
 
 		if (guiCam.position.x < CAM_MIN_X)
 			guiCam.position.x = CAM_MIN_X;
@@ -294,7 +303,8 @@ public class WorldMapTiledScreen extends Screens implements GestureListener {
 			float x = arrMundos.get(i).position.x;
 			float y = arrMundos.get(i).position.y;
 
-			oAssets.bolaAnim.apply(oAssets.bolaSkeleton, ScreenlastStatetime, ScreenStateTime, true, null);
+			oAssets.bolaAnim.apply(oAssets.bolaSkeleton, ScreenlastStatetime,
+					ScreenStateTime, true, null);
 			oAssets.bolaSkeleton.setX(x);
 			oAssets.bolaSkeleton.setY(y - .5f);
 			oAssets.bolaSkeleton.updateWorldTransform();
@@ -303,7 +313,8 @@ public class WorldMapTiledScreen extends Screens implements GestureListener {
 
 		}
 		if (Settings.isEnabledSecretWorld) {
-			oAssets.rayoAnim.apply(oAssets.rayoSkeleton, ScreenlastStatetime, ScreenStateTime, true, null);
+			oAssets.rayoAnim.apply(oAssets.rayoSkeleton, ScreenlastStatetime,
+					ScreenStateTime, true, null);
 			oAssets.rayoSkeleton.setX(secretWorld.x);
 			oAssets.rayoSkeleton.setY(secretWorld.y);
 			oAssets.rayoSkeleton.updateWorldTransform();
@@ -311,7 +322,8 @@ public class WorldMapTiledScreen extends Screens implements GestureListener {
 			skelrender.draw(batcher, oAssets.rayoSkeleton);
 		}
 
-		oAssets.humoVolvanAnimation.apply(oAssets.humoVolcanSkeleton, ScreenlastStatetime, ScreenStateTime, true, null);
+		oAssets.humoVolvanAnimation.apply(oAssets.humoVolcanSkeleton,
+				ScreenlastStatetime, ScreenStateTime, true, null);
 		oAssets.humoVolcanSkeleton.setX(15);
 		oAssets.humoVolcanSkeleton.setY(10.5f);
 		oAssets.humoVolcanSkeleton.updateWorldTransform();
@@ -335,11 +347,13 @@ public class WorldMapTiledScreen extends Screens implements GestureListener {
 		Iterator<Mundos> it = arrMundos.iterator();
 		while (it.hasNext()) {
 			Mundos obj = it.next();
-			render.rect(obj.bounds.x, obj.bounds.y, obj.bounds.width, obj.bounds.height);
+			render.rect(obj.bounds.x, obj.bounds.y, obj.bounds.width,
+					obj.bounds.height);
 
 		}
 		if (Settings.isEnabledSecretWorld) {
-			render.rect(secretWorldBounds.x, secretWorldBounds.y, secretWorldBounds.width, secretWorldBounds.height);
+			render.rect(secretWorldBounds.x, secretWorldBounds.y,
+					secretWorldBounds.width, secretWorldBounds.height);
 		}
 
 		render.end();
@@ -388,7 +402,8 @@ public class WorldMapTiledScreen extends Screens implements GestureListener {
 				return true;
 			}
 		}
-		if (Settings.isEnabledSecretWorld && secretWorldBounds.contains(touchPoint.x, touchPoint.y)) {
+		if (Settings.isEnabledSecretWorld
+				&& secretWorldBounds.contains(touchPoint.x, touchPoint.y)) {
 
 			changeToGameTiledScreen(1000);
 			Settings.isEnabledSecretWorld = false;
@@ -435,7 +450,8 @@ public class WorldMapTiledScreen extends Screens implements GestureListener {
 	}
 
 	@Override
-	public boolean pinch(Vector2 initialPointer1, Vector2 initialPointer2, Vector2 pointer1, Vector2 pointer2) {
+	public boolean pinch(Vector2 initialPointer1, Vector2 initialPointer2,
+			Vector2 pointer1, Vector2 pointer2) {
 		// TODO Auto-generated method stub
 		return false;
 	}

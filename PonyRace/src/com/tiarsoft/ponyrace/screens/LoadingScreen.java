@@ -1,9 +1,6 @@
 package com.tiarsoft.ponyrace.screens;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.GL10;
-import com.badlogic.gdx.graphics.GLCommon;
 import com.tiarsoft.ponyrace.MainPonyRace;
 import com.tiarsoft.ponyrace.game.GameScreenTileds;
 
@@ -93,17 +90,15 @@ public class LoadingScreen extends Screens {
 
 	@Override
 	public void draw(float delta) {
-		GLCommon gl = Gdx.gl;
-		gl.glClearColor(0, 0, 0, 0);
-		gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
-		Gdx.gl.glDisable(GL10.GL_DEPTH_TEST);
+
 		guiCam.update();
 		batcher.setProjectionMatrix(guiCam.combined);
 
 		batcher.begin();
 		oAssets.fontChco.setColor(Color.WHITE);
 		bounds = oAssets.fontChco.getBounds(cargaActual + "%");// obtiene las medidas del texto de las monedas
-		oAssets.fontChco.draw(batcher, cargaActual + "%", (SCREEN_WIDTH / 2) - (bounds.width / 2), SCREEN_HEIGHT / 2 - bounds.height / 2);
+		oAssets.fontChco.draw(batcher, cargaActual + "%", (SCREEN_WIDTH / 2)
+				- (bounds.width / 2), SCREEN_HEIGHT / 2 - bounds.height / 2);
 		batcher.end();
 	}
 

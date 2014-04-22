@@ -1,6 +1,5 @@
 package com.tiarsoft.ponyrace;
 
-import java.nio.IntBuffer;
 import java.util.LinkedHashMap;
 import java.util.Random;
 
@@ -9,7 +8,6 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -23,7 +21,6 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.NinePatchDrawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
-import com.badlogic.gdx.utils.BufferUtils;
 import com.esotericsoftware.spine.Animation;
 import com.esotericsoftware.spine.Skeleton;
 import com.esotericsoftware.spine.SkeletonData;
@@ -65,16 +62,13 @@ public class Assets extends AssetManager {
 		nombrePonys.put(4, "LAlba");
 		nombrePonys.put(5, "enemigo");
 
-		IntBuffer buf = BufferUtils.newIntBuffer(16);
-		Gdx.gl.glGetIntegerv(GL10.GL_MAX_TEXTURE_SIZE, buf);
-		int maxSize = buf.get();
-
-		Gdx.app.log("Texture Size", maxSize + "");
 		if (usarPacked)
-			this.setLoader(TiledMap.class, new AtlasTmxMapLoader(new InternalFileHandleResolver()));
+			this.setLoader(TiledMap.class, new AtlasTmxMapLoader(
+					new InternalFileHandleResolver()));
 
 		else
-			this.setLoader(TiledMap.class, new TmxMapLoader(new InternalFileHandleResolver()));
+			this.setLoader(TiledMap.class, new TmxMapLoader(
+					new InternalFileHandleResolver()));
 		cargarFont();
 
 		load(atlasComun, TextureAtlas.class);
@@ -90,12 +84,17 @@ public class Assets extends AssetManager {
 		AtlasRegion nube4 = atlas.findRegion("nube4");
 		AtlasRegion nube5 = atlas.findRegion("nube5");
 		AtlasRegion nube6 = atlas.findRegion("nube6");
-		nube = new com.badlogic.gdx.graphics.g2d.Animation(.075f, nube0, nube1, nube2, nube3, nube4, nube5, nube6);
+		nube = new com.badlogic.gdx.graphics.g2d.Animation(.075f, nube0, nube1,
+				nube2, nube3, nube4, nube5, nube6);
 
-		btSonidoON = new NinePatchDrawable(new NinePatch(atlas.findRegion("soundpausa")));
-		btSonidoOff = new NinePatchDrawable(new NinePatch(atlas.findRegion("soundoffpausa")));
-		btMusicaON = new NinePatchDrawable(new NinePatch(atlas.findRegion("musicpausa")));
-		btMusicaOff = new NinePatchDrawable(new NinePatch(atlas.findRegion("musicoffpausa")));
+		btSonidoON = new NinePatchDrawable(new NinePatch(
+				atlas.findRegion("soundpausa")));
+		btSonidoOff = new NinePatchDrawable(new NinePatch(
+				atlas.findRegion("soundoffpausa")));
+		btMusicaON = new NinePatchDrawable(new NinePatch(
+				atlas.findRegion("musicpausa")));
+		btMusicaOff = new NinePatchDrawable(new NinePatch(
+				atlas.findRegion("musicoffpausa")));
 
 		int size = 80;
 		btSonidoOff.setMinHeight(size);
@@ -109,11 +108,15 @@ public class Assets extends AssetManager {
 
 		skin = new Skin(Gdx.files.internal("data/menus/uiskin.json"), atlas);
 		skin.getFont("default-font").setScale(.5f);
-		btSignInUp = new NinePatchDrawable(new NinePatch(atlas.createPatch("btSignInUp")));
-		btSignInDown = new NinePatchDrawable(new NinePatch(atlas.createPatch("btSignInDown")));
+		btSignInUp = new NinePatchDrawable(new NinePatch(
+				atlas.createPatch("btSignInUp")));
+		btSignInDown = new NinePatchDrawable(new NinePatch(
+				atlas.createPatch("btSignInDown")));
 
-		btShareFacebookUp = new NinePatchDrawable(new NinePatch(atlas.createPatch("btShareFacebookUp")));
-		btShareFacebookDown = new NinePatchDrawable(new NinePatch(atlas.createPatch("btShareFacebookDown")));
+		btShareFacebookUp = new NinePatchDrawable(new NinePatch(
+				atlas.createPatch("btShareFacebookUp")));
+		btShareFacebookDown = new NinePatchDrawable(new NinePatch(
+				atlas.createPatch("btShareFacebookDown")));
 
 	}
 
@@ -125,14 +128,19 @@ public class Assets extends AssetManager {
 
 	public void cargarFont() {
 
-		Texture texturaFont = new Texture(Gdx.files.internal("data/fonts/fontMenus2.png"));
+		Texture texturaFont = new Texture(
+				Gdx.files.internal("data/fonts/fontMenus2.png"));
 		texturaFont.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 
-		fontGde = new BitmapFont(Gdx.files.internal("data/fonts/fontMenus2.fnt"), new TextureRegion(texturaFont), false);
+		fontGde = new BitmapFont(
+				Gdx.files.internal("data/fonts/fontMenus2.fnt"),
+				new TextureRegion(texturaFont), false);
 		fontGde.setUseIntegerPositions(false);
 		fontGde.setFixedWidthGlyphs("0123456789");
 
-		fontChco = new BitmapFont(Gdx.files.internal("data/fonts/fontMenus2.fnt"), new TextureRegion(texturaFont), false);
+		fontChco = new BitmapFont(
+				Gdx.files.internal("data/fonts/fontMenus2.fnt"),
+				new TextureRegion(texturaFont), false);
 		fontChco.setUseIntegerPositions(false);
 		fontChco.setFixedWidthGlyphs("0123456789");
 	}
@@ -174,12 +182,14 @@ public class Assets extends AssetManager {
 
 		TextureAtlas atlas = get(atlasMenusRuta, TextureAtlas.class);
 		fondoMainMenu = atlas.findRegion("fondoMenu");
-		btnFacebook = new NinePatchDrawable(new NinePatch(atlas.findRegion("botonFace")));
+		btnFacebook = new NinePatchDrawable(new NinePatch(
+				atlas.findRegion("botonFace")));
 
 		SkeletonJson json = new SkeletonJson(atlas);
 
 		json.setScale(.7f);
-		SkeletonData skeletonData = json.readSkeletonData(Gdx.files.internal("data/menus/titleponyracing.json"));
+		SkeletonData skeletonData = json.readSkeletonData(Gdx.files
+				.internal("data/menus/titleponyracing.json"));
 		animationMenuTitle = skeletonData.findAnimation("flag");
 		skeletonMenuTitle = new Skeleton(skeletonData);
 
@@ -241,25 +251,38 @@ public class Assets extends AssetManager {
 		globoTienda = atlas.findRegion("miniGlobos");
 		chileTienda = atlas.findRegion("miniChile");
 
-		btNubeUpTienda = new NinePatchDrawable(new NinePatch(atlas.findRegion("botonBuy")));
-		btNubeDownTienda = new NinePatchDrawable(new NinePatch(atlas.findRegion("botonBuyPresionado")));
-		miniNubeScroll = new NinePatchDrawable(new NinePatch(atlas.findRegion("mininubescroll")));
-		barraScroll = new NinePatchDrawable(new NinePatch(atlas.findRegion("barradescroll")));
+		btNubeUpTienda = new NinePatchDrawable(new NinePatch(
+				atlas.findRegion("botonBuy")));
+		btNubeDownTienda = new NinePatchDrawable(new NinePatch(
+				atlas.findRegion("botonBuyPresionado")));
+		miniNubeScroll = new NinePatchDrawable(new NinePatch(
+				atlas.findRegion("mininubescroll")));
+		barraScroll = new NinePatchDrawable(new NinePatch(
+				atlas.findRegion("barradescroll")));
 
-		btMenuLeftUp = new NinePatchDrawable(new NinePatch(atlas.findRegion("btSinPresionar")));
-		btMenuLeftDown = new NinePatchDrawable(new NinePatch(atlas.findRegion("btPresionado")));
+		btMenuLeftUp = new NinePatchDrawable(new NinePatch(
+				atlas.findRegion("btSinPresionar")));
+		btMenuLeftDown = new NinePatchDrawable(new NinePatch(
+				atlas.findRegion("btPresionado")));
 
-		perfilCloud = new TextureRegionDrawable(atlas.findRegion("perfiles/cloud"));
-		perfilNatylol = new TextureRegionDrawable(atlas.findRegion("perfiles/natylol"));
-		perfilIgnis = new TextureRegionDrawable(atlas.findRegion("perfiles/ignis"));
-		perfilcientifico = new TextureRegionDrawable(atlas.findRegion("perfiles/scientist"));
-		perfilLAlba = new TextureRegionDrawable(atlas.findRegion("perfiles/lightingalba"));
-		perfilenemigo = new TextureRegionDrawable(atlas.findRegion("perfiles/enemy"));
+		perfilCloud = new TextureRegionDrawable(
+				atlas.findRegion("perfiles/cloud"));
+		perfilNatylol = new TextureRegionDrawable(
+				atlas.findRegion("perfiles/natylol"));
+		perfilIgnis = new TextureRegionDrawable(
+				atlas.findRegion("perfiles/ignis"));
+		perfilcientifico = new TextureRegionDrawable(
+				atlas.findRegion("perfiles/scientist"));
+		perfilLAlba = new TextureRegionDrawable(
+				atlas.findRegion("perfiles/lightingalba"));
+		perfilenemigo = new TextureRegionDrawable(
+				atlas.findRegion("perfiles/enemy"));
 
 		SkeletonJson json = new SkeletonJson(atlas);
 
 		json.setScale(1f);
-		SkeletonData skeletonData = json.readSkeletonData(Gdx.files.internal("data/menus/shoptitle.json"));
+		SkeletonData skeletonData = json.readSkeletonData(Gdx.files
+				.internal("data/menus/shoptitle.json"));
 		animationTiendaTitle = skeletonData.findAnimation("animation");
 		skeletonTiendaTitle = new Skeleton(skeletonData);
 
@@ -294,24 +317,31 @@ public class Assets extends AssetManager {
 		tiledWorldMap = get(atlasWorldTiledScreenRuta, TiledMap.class);
 
 		json.setScale(.007f);
-		SkeletonData skeletonData = json.readSkeletonData(Gdx.files.internal("data/menus/ball.json"));
+		SkeletonData skeletonData = json.readSkeletonData(Gdx.files
+				.internal("data/menus/ball.json"));
 		bolaAnim = skeletonData.findAnimation("pulse");
 		bolaSkeleton = new Skeleton(skeletonData);
 
 		json.setScale(.0225f);
-		skeletonData = json.readSkeletonData(Gdx.files.internal("data/menus/thunder.json"));
+		skeletonData = json.readSkeletonData(Gdx.files
+				.internal("data/menus/thunder.json"));
 		rayoAnim = skeletonData.findAnimation("floating");
 		rayoSkeleton = new Skeleton(skeletonData);
 
 		json.setScale(.025f);
-		skeletonData = json.readSkeletonData(Gdx.files.internal("data/menus/humovolcan.json"));
+		skeletonData = json.readSkeletonData(Gdx.files
+				.internal("data/menus/humovolcan.json"));
 		humoVolvanAnimation = skeletonData.findAnimation("humo");
 		humoVolcanSkeleton = new Skeleton(skeletonData);
 
-		btDerUp = new NinePatchDrawable(new NinePatch(atlas.findRegion("derSinPresionar")));
-		btDerDown = new NinePatchDrawable(new NinePatch(atlas.findRegion("derPresionado")));
-		btIzqUp = new NinePatchDrawable(new NinePatch(atlas.findRegion("izqSinPresionar")));
-		btIzqDown = new NinePatchDrawable(new NinePatch(atlas.findRegion("izqPresionado")));
+		btDerUp = new NinePatchDrawable(new NinePatch(
+				atlas.findRegion("derSinPresionar")));
+		btDerDown = new NinePatchDrawable(new NinePatch(
+				atlas.findRegion("derPresionado")));
+		btIzqUp = new NinePatchDrawable(new NinePatch(
+				atlas.findRegion("izqSinPresionar")));
+		btIzqDown = new NinePatchDrawable(new NinePatch(
+				atlas.findRegion("izqPresionado")));
 
 	}
 
@@ -535,35 +565,42 @@ public class Assets extends AssetManager {
 
 		SkeletonJson json = new SkeletonJson(atlas);
 		json.setScale(.01f);
-		ponySkeletonData = json.readSkeletonData(Gdx.files.internal("data/animaciones/personajes.json"));
+		ponySkeletonData = json.readSkeletonData(Gdx.files
+				.internal("data/animaciones/personajes.json"));
 		// ponySkeletonData = json.readSkeletonData(Gdx.files.internal("data/animaciones/characters.json"));
 		json.setScale(.004f);
-		skeletonBombData = json.readSkeletonData(Gdx.files.internal("data/animaciones/bombs.json"));
+		skeletonBombData = json.readSkeletonData(Gdx.files
+				.internal("data/animaciones/bombs.json"));
 		bombAnim = skeletonBombData.findAnimation("b1");
 		bombExAnim = skeletonBombData.findAnimation("b2x");
 
 		json.setScale(.005f);
-		skeletonMonedaData = json.readSkeletonData(Gdx.files.internal("data/animaciones/coin.json"));
+		skeletonMonedaData = json.readSkeletonData(Gdx.files
+				.internal("data/animaciones/coin.json"));
 		monedaAnim = skeletonMonedaData.findAnimation("normal");
 		monedaTomadaAnim = skeletonMonedaData.findAnimation("plus1");
 
 		json.setScale(.009f);
-		chileSkeletonData = json.readSkeletonData(Gdx.files.internal("data/animaciones/chile.json"));
+		chileSkeletonData = json.readSkeletonData(Gdx.files
+				.internal("data/animaciones/chile.json"));
 		chileAnim = chileSkeletonData.findAnimation("normal");
 		chileTomadaAnim = chileSkeletonData.findAnimation("toospicy");
 
 		json.setScale(.009f);
-		globoSkeletonData = json.readSkeletonData(Gdx.files.internal("data/animaciones/ballons.json"));
+		globoSkeletonData = json.readSkeletonData(Gdx.files
+				.internal("data/animaciones/ballons.json"));
 		globoAnim = globoSkeletonData.findAnimation("normal");
 		globoTomadaAnim = globoSkeletonData.findAnimation("plus5");
 
 		json.setScale(.009f);
-		dulceSkeletonData = json.readSkeletonData(Gdx.files.internal("data/animaciones/chocolate.json"));
+		dulceSkeletonData = json.readSkeletonData(Gdx.files
+				.internal("data/animaciones/chocolate.json"));
 		dulceAnim = dulceSkeletonData.findAnimation("normal");
 		dulceTomadaAnim = dulceSkeletonData.findAnimation("speedup");
 
 		json.setScale(1f);
-		SkeletonData skeletonData = json.readSkeletonData(Gdx.files.internal("data/animaciones/alterminar.json"));
+		SkeletonData skeletonData = json.readSkeletonData(Gdx.files
+				.internal("data/animaciones/alterminar.json"));
 		finCarreraAnimacion1Lugar = skeletonData.findAnimation("1stplace");
 		finCarreraAnimacion2Lugar = skeletonData.findAnimation("2ndplace");
 		finCarreraAnimacion3Lugar = skeletonData.findAnimation("3rdplace");
@@ -577,7 +614,8 @@ public class Assets extends AssetManager {
 		// fuegoSkeleton = new Skeleton(fuegoSkeletonData);
 
 		json.setScale(.01f);
-		SkeletonData fondoSkeletonData = json.readSkeletonData(Gdx.files.internal("data/animaciones/background.json"));
+		SkeletonData fondoSkeletonData = json.readSkeletonData(Gdx.files
+				.internal("data/animaciones/background.json"));
 		fondoAnim = fondoSkeletonData.findAnimation("animation");
 		fondoSkeleton = new Skeleton(fondoSkeletonData);
 
@@ -603,22 +641,32 @@ public class Assets extends AssetManager {
 
 		fondo = atlas.findRegion("imagenes/fondo");
 
-		padIzq = new NinePatchDrawable(new NinePatch(atlas.findRegion("Interfaz/pad_izq")));
-		padDer = new NinePatchDrawable(new NinePatch(atlas.findRegion("Interfaz/pad_derecha")));
-		btBombaDown = new NinePatchDrawable(new NinePatch(atlas.findRegion("Interfaz/bombasalpresionar")));
-		btBombaUp = new NinePatchDrawable(new NinePatch(atlas.findRegion("Interfaz/bombasinpresionar")));
+		padIzq = new NinePatchDrawable(new NinePatch(
+				atlas.findRegion("Interfaz/pad_izq")));
+		padDer = new NinePatchDrawable(new NinePatch(
+				atlas.findRegion("Interfaz/pad_derecha")));
+		btBombaDown = new NinePatchDrawable(new NinePatch(
+				atlas.findRegion("Interfaz/bombasalpresionar")));
+		btBombaUp = new NinePatchDrawable(new NinePatch(
+				atlas.findRegion("Interfaz/bombasinpresionar")));
 
-		btJumpDown = new NinePatchDrawable(new NinePatch(atlas.findRegion("Interfaz/saltoalpresionar")));
-		btJumpUp = new NinePatchDrawable(new NinePatch(atlas.findRegion("Interfaz/saltosinpresionar")));
+		btJumpDown = new NinePatchDrawable(new NinePatch(
+				atlas.findRegion("Interfaz/saltoalpresionar")));
+		btJumpUp = new NinePatchDrawable(new NinePatch(
+				atlas.findRegion("Interfaz/saltosinpresionar")));
 		// btTroncoUp = new NinePatchDrawable(new NinePatch(atlas.findRegion("Interfaz/botontroncosinpresionar")));
 		// btTroncoDown = new NinePatchDrawable(new NinePatch(atlas.findRegion("Interfaz/botontroncopresionado")));
 
-		btTroncoUp = new NinePatchDrawable(new NinePatch(atlas.findRegion("Interfaz/btPlatanoTachuelas")));
-		btTroncoDown = new NinePatchDrawable(new NinePatch(atlas.findRegion("Interfaz/btPlatanoTachuelasPresionado")));
+		btTroncoUp = new NinePatchDrawable(new NinePatch(
+				atlas.findRegion("Interfaz/btPlatanoTachuelas")));
+		btTroncoDown = new NinePatchDrawable(new NinePatch(
+				atlas.findRegion("Interfaz/btPlatanoTachuelasPresionado")));
 
-		btPauseUp = new NinePatchDrawable(new NinePatch(atlas.findRegion("Interfaz/pause")));
+		btPauseUp = new NinePatchDrawable(new NinePatch(
+				atlas.findRegion("Interfaz/pause")));
 
-		fondoVentanaPause = new NinePatchDrawable(new NinePatch(atlas.findRegion("Interfaz/pausa")));
+		fondoVentanaPause = new NinePatchDrawable(new NinePatch(
+				atlas.findRegion("Interfaz/pausa")));
 
 		indicador = atlas.findRegion("Interfaz/indicador");
 		indicadorCloud = atlas.findRegion("Interfaz/icono000");

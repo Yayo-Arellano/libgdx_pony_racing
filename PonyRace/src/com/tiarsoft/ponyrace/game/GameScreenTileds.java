@@ -4,7 +4,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.GLCommon;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -33,12 +32,7 @@ import com.tiarsoft.ponyrace.screens.WorldMapTiledScreen;
 public class GameScreenTileds extends Screens {
 
 	public enum State {
-		ready,
-		running,
-		paused,
-		timeUp,
-		nextLevel,
-		tryAgain;
+		ready, running, paused, timeUp, nextLevel, tryAgain;
 
 	}
 
@@ -92,11 +86,16 @@ public class GameScreenTileds extends Screens {
 
 		btPausa = new Button(oAssets.btPauseUp);
 
-		TextButtonStyle txButtonStyleFireBombs = new TextButtonStyle(oAssets.btBombaUp, oAssets.btBombaDown, null, oAssets.fontChco);
-		TextButtonStyle txButtonStyleFireWoods = new TextButtonStyle(oAssets.btTroncoUp, oAssets.btTroncoDown, null, oAssets.fontChco);
+		TextButtonStyle txButtonStyleFireBombs = new TextButtonStyle(
+				oAssets.btBombaUp, oAssets.btBombaDown, null, oAssets.fontChco);
+		TextButtonStyle txButtonStyleFireWoods = new TextButtonStyle(
+				oAssets.btTroncoUp, oAssets.btTroncoDown, null,
+				oAssets.fontChco);
 
-		btFireBomb = new TextButton(Settings.numeroBombas + "", txButtonStyleFireBombs);
-		btFireWood = new TextButton(Settings.numeroWoods + "", txButtonStyleFireWoods);
+		btFireBomb = new TextButton(Settings.numeroBombas + "",
+				txButtonStyleFireBombs);
+		btFireWood = new TextButton(Settings.numeroWoods + "",
+				txButtonStyleFireWoods);
 
 		setBotonesInterfaz();
 		inicializarBotonesMenusInGame();
@@ -118,25 +117,25 @@ public class GameScreenTileds extends Screens {
 		drawStatsEndRace = false;
 
 		switch (Settings.nivelTime) {
-			default:
-			case 0:
-				MULTIPLICADOR_MONEDAS_TIME_LEFT = 0;
-				break;
-			case 1:
-				MULTIPLICADOR_MONEDAS_TIME_LEFT = 1;
-				break;
-			case 2:
-				MULTIPLICADOR_MONEDAS_TIME_LEFT = 2;
-				break;
-			case 3:
-				MULTIPLICADOR_MONEDAS_TIME_LEFT = 3;
-				break;
-			case 4:
-				MULTIPLICADOR_MONEDAS_TIME_LEFT = 4;
-				break;
-			case 5:
-				MULTIPLICADOR_MONEDAS_TIME_LEFT = 5;
-				break;
+		default:
+		case 0:
+			MULTIPLICADOR_MONEDAS_TIME_LEFT = 0;
+			break;
+		case 1:
+			MULTIPLICADOR_MONEDAS_TIME_LEFT = 1;
+			break;
+		case 2:
+			MULTIPLICADOR_MONEDAS_TIME_LEFT = 2;
+			break;
+		case 3:
+			MULTIPLICADOR_MONEDAS_TIME_LEFT = 3;
+			break;
+		case 4:
+			MULTIPLICADOR_MONEDAS_TIME_LEFT = 4;
+			break;
+		case 5:
+			MULTIPLICADOR_MONEDAS_TIME_LEFT = 5;
+			break;
 		}
 
 	}
@@ -166,7 +165,8 @@ public class GameScreenTileds extends Screens {
 
 		btJump.addListener(new ClickListener() {
 			@Override
-			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+			public boolean touchDown(InputEvent event, float x, float y,
+					int pointer, int button) {
 				jump = true;
 				return super.touchDown(event, x, y, pointer, button);
 			}
@@ -174,7 +174,8 @@ public class GameScreenTileds extends Screens {
 
 		btFireBomb.addListener(new ClickListener() {
 			@Override
-			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+			public boolean touchDown(InputEvent event, float x, float y,
+					int pointer, int button) {
 				fireBomb = true;
 				return super.touchDown(event, x, y, pointer, button);
 			}
@@ -182,27 +183,32 @@ public class GameScreenTileds extends Screens {
 
 		btFireWood.addListener(new ClickListener() {
 			@Override
-			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+			public boolean touchDown(InputEvent event, float x, float y,
+					int pointer, int button) {
 				fireWood = true;
 				return super.touchDown(event, x, y, pointer, button);
 			}
 		});
 
 		btDer.addListener(new ClickListener() {
-			public void enter(InputEvent event, float x, float y, int pointer, com.badlogic.gdx.scenes.scene2d.Actor fromActor) {
+			public void enter(InputEvent event, float x, float y, int pointer,
+					com.badlogic.gdx.scenes.scene2d.Actor fromActor) {
 				accelX = 1;
 			};
 
-			public void exit(InputEvent event, float x, float y, int pointer, com.badlogic.gdx.scenes.scene2d.Actor toActor) {
+			public void exit(InputEvent event, float x, float y, int pointer,
+					com.badlogic.gdx.scenes.scene2d.Actor toActor) {
 				accelX = 0;
 			};
 		});
 		btIzq.addListener(new ClickListener() {
-			public void enter(InputEvent event, float x, float y, int pointer, com.badlogic.gdx.scenes.scene2d.Actor fromActor) {
+			public void enter(InputEvent event, float x, float y, int pointer,
+					com.badlogic.gdx.scenes.scene2d.Actor fromActor) {
 				accelX = -1;
 			};
 
-			public void exit(InputEvent event, float x, float y, int pointer, com.badlogic.gdx.scenes.scene2d.Actor toActor) {
+			public void exit(InputEvent event, float x, float y, int pointer,
+					com.badlogic.gdx.scenes.scene2d.Actor toActor) {
 				accelX = 0;
 			};
 		});
@@ -225,7 +231,8 @@ public class GameScreenTileds extends Screens {
 		if (Settings.numeroWoods > 0)
 			stage.addActor(btFireWood);
 
-		if (Settings.seCalificoApp == false && Settings.statTimesPlayed % 5 == 0) {
+		if (Settings.seCalificoApp == false
+				&& Settings.statTimesPlayed % 5 == 0) {
 			game.signin.showDialogRate();
 		}
 	}
@@ -237,25 +244,25 @@ public class GameScreenTileds extends Screens {
 			return;
 
 		switch (state) {
-			default:
-			case ready:
-				updateReady(delta);
-				break;
-			case running:
-				updateRunning(delta);
-				break;
-			case timeUp:
-				updateTimeUp(delta);
-				break;
-			case paused:
-				updatePaused(delta);
-				break;
-			case nextLevel:
-				updateNextLevel(delta);
-				break;
-			case tryAgain:
-				updateTryAgain(delta);
-				break;
+		default:
+		case ready:
+			updateReady(delta);
+			break;
+		case running:
+			updateRunning(delta);
+			break;
+		case timeUp:
+			updateTimeUp(delta);
+			break;
+		case paused:
+			updatePaused(delta);
+			break;
+		case nextLevel:
+			updateNextLevel(delta);
+			break;
+		case tryAgain:
+			updateTryAgain(delta);
+			break;
 		}
 
 	}
@@ -309,8 +316,11 @@ public class GameScreenTileds extends Screens {
 			btFireWood.setText(Settings.numeroWoods + "");
 		fireBomb = jump = fireWood = false;
 
-		if (oWorld.state == WorldTiled.State.nextLevel || oWorld.state == WorldTiled.State.tryAgain) {
-			if (((int) oWorld.tiempoLeft) % 2 == 0 && oWorld.oPony.monedasRecolectadas % 2 == 0 && ((int) oWorld.tiempoLap % 2) == 0)
+		if (oWorld.state == WorldTiled.State.nextLevel
+				|| oWorld.state == WorldTiled.State.tryAgain) {
+			if (((int) oWorld.tiempoLeft) % 2 == 0
+					&& oWorld.oPony.monedasRecolectadas % 2 == 0
+					&& ((int) oWorld.tiempoLap % 2) == 0)
 				Settings.isEnabledSecretWorld = true;
 		}
 
@@ -346,45 +356,49 @@ public class GameScreenTileds extends Screens {
 			idWorld12 = "world12";
 		}
 
-		if (state != State.running && state != State.paused && state != State.timeUp) // Si esta corriendo, o pausado, o timeup ps no se sube el tiempo a GPGS
+		if (state != State.running && state != State.paused
+				&& state != State.timeUp) // Si esta corriendo, o pausado, o timeup ps no se sube el tiempo a GPGS
 
 			switch (nivelTiled) {
-				case 1:
-					game.gameServiceHandler.submitScore(oWorld.tiempoLap, idWorld1);
-					break;
-				case 2:
-					game.gameServiceHandler.submitScore(oWorld.tiempoLap, idWorld2);
-					break;
-				case 3:
-					game.gameServiceHandler.submitScore(oWorld.tiempoLap, idWorld3);
-					break;
-				case 4:
-					game.gameServiceHandler.submitScore(oWorld.tiempoLap, idWorld4);
-					break;
-				case 5:
-					game.gameServiceHandler.submitScore(oWorld.tiempoLap, idWorld5);
-					break;
-				case 6:
-					game.gameServiceHandler.submitScore(oWorld.tiempoLap, idWorld6);
-					break;
-				case 7:
-					game.gameServiceHandler.submitScore(oWorld.tiempoLap, idWorld7);
-					break;
-				case 8:
-					game.gameServiceHandler.submitScore(oWorld.tiempoLap, idWorld8);
-					break;
-				case 9:
-					game.gameServiceHandler.submitScore(oWorld.tiempoLap, idWorld9);
-					break;
-				case 10:
-					game.gameServiceHandler.submitScore(oWorld.tiempoLap, idWorld10);
-					break;
-				case 11:
-					game.gameServiceHandler.submitScore(oWorld.tiempoLap, idWorld11);
-					break;
-				case 12:
-					game.gameServiceHandler.submitScore(oWorld.tiempoLap, idWorld12);
-					break;
+			case 1:
+				game.gameServiceHandler.submitScore(oWorld.tiempoLap, idWorld1);
+				break;
+			case 2:
+				game.gameServiceHandler.submitScore(oWorld.tiempoLap, idWorld2);
+				break;
+			case 3:
+				game.gameServiceHandler.submitScore(oWorld.tiempoLap, idWorld3);
+				break;
+			case 4:
+				game.gameServiceHandler.submitScore(oWorld.tiempoLap, idWorld4);
+				break;
+			case 5:
+				game.gameServiceHandler.submitScore(oWorld.tiempoLap, idWorld5);
+				break;
+			case 6:
+				game.gameServiceHandler.submitScore(oWorld.tiempoLap, idWorld6);
+				break;
+			case 7:
+				game.gameServiceHandler.submitScore(oWorld.tiempoLap, idWorld7);
+				break;
+			case 8:
+				game.gameServiceHandler.submitScore(oWorld.tiempoLap, idWorld8);
+				break;
+			case 9:
+				game.gameServiceHandler.submitScore(oWorld.tiempoLap, idWorld9);
+				break;
+			case 10:
+				game.gameServiceHandler
+						.submitScore(oWorld.tiempoLap, idWorld10);
+				break;
+			case 11:
+				game.gameServiceHandler
+						.submitScore(oWorld.tiempoLap, idWorld11);
+				break;
+			case 12:
+				game.gameServiceHandler
+						.submitScore(oWorld.tiempoLap, idWorld12);
+				break;
 
 			}
 
@@ -419,11 +433,15 @@ public class GameScreenTileds extends Screens {
 
 	private void giveCoinsAfterfinish(float delta) {
 		time_left_coin += delta;
-		if (Settings.nivelTime > 0 && Settings.dificultadActual >= Settings.DIFICULTAD_NORMAL && oWorld.tiempoLeft > 0 && time_left_coin >= GET_COIN_FOR_TIME_LEFT) {
+		if (Settings.nivelTime > 0
+				&& Settings.dificultadActual >= Settings.DIFICULTAD_NORMAL
+				&& oWorld.tiempoLeft > 0
+				&& time_left_coin >= GET_COIN_FOR_TIME_LEFT) {
 			time_left_coin -= GET_COIN_FOR_TIME_LEFT;
 			oWorld.tiempoLeft--;
 			oWorld.oPony.monedasRecolectadas += MULTIPLICADOR_MONEDAS_TIME_LEFT;
-			stringMonedasRecolectadas.delete(0, stringMonedasRecolectadas.length());
+			stringMonedasRecolectadas.delete(0,
+					stringMonedasRecolectadas.length());
 			stringMonedasRecolectadas.append(oWorld.oPony.monedasRecolectadas);
 			Settings.sumarMonedas(MULTIPLICADOR_MONEDAS_TIME_LEFT);
 			game.oAssets.playSound(game.oAssets.pickCoin);
@@ -432,8 +450,8 @@ public class GameScreenTileds extends Screens {
 
 	@Override
 	public void draw(float delta) {
-		GLCommon gl = Gdx.gl;
-		gl.glClearColor(.38f, .77f, .87f, 0);
+
+		Gdx.gl.glClearColor(.38f, .77f, .87f, 0);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
 		if (state == State.paused)
@@ -449,25 +467,25 @@ public class GameScreenTileds extends Screens {
 		batcher.enableBlending();
 		batcher.begin();
 		switch (state) {
-			default:
-			case ready:
-				presentReady(delta);
-				break;
-			case running:
-				presentRunning(delta);
-				break;
-			case timeUp:
-				presentTimeUp(delta);
-				break;
-			case paused:
-				presentPaused(delta);
-				break;
-			case nextLevel:
-				presentNextLevel(delta);
-				break;
-			case tryAgain:
-				presentTryAgain(delta);
-				break;
+		default:
+		case ready:
+			presentReady(delta);
+			break;
+		case running:
+			presentRunning(delta);
+			break;
+		case timeUp:
+			presentTimeUp(delta);
+			break;
+		case paused:
+			presentPaused(delta);
+			break;
+		case nextLevel:
+			presentNextLevel(delta);
+			break;
+		case tryAgain:
+			presentTryAgain(delta);
+			break;
 
 		}
 
@@ -481,7 +499,9 @@ public class GameScreenTileds extends Screens {
 
 	private void presentReady(float delta) {
 		bounds = oAssets.fontGde.getBounds("Touch the screen to start");
-		oAssets.fontGde.draw(batcher, "Touch the screen to start", SCREEN_WIDTH / 2f - bounds.width / 2f, SCREEN_HEIGHT / 2f - bounds.height / 2f);
+		oAssets.fontGde.draw(batcher, "Touch the screen to start", SCREEN_WIDTH
+				/ 2f - bounds.width / 2f, SCREEN_HEIGHT / 2f - bounds.height
+				/ 2f);
 
 	}
 
@@ -544,15 +564,18 @@ public class GameScreenTileds extends Screens {
 
 		// El mundo actual
 		bounds = oAssets.fontChco.getBounds(stringMundoActual);
-		oAssets.fontChco.draw(batcher, stringMundoActual, SCREEN_WIDTH / 2 - bounds.width / 2, alturaIndicador - 5);
+		oAssets.fontChco.draw(batcher, stringMundoActual, SCREEN_WIDTH / 2
+				- bounds.width / 2, alturaIndicador - 5);
 
 		// El tiempo que queda
 		bounds = oAssets.fontChco.getBounds(stringTiempoLeft);
-		oAssets.fontChco.draw(batcher, stringTiempoLeft, SCREEN_WIDTH / 2 - bounds.width / 2, alturaIndicador - 32);
+		oAssets.fontChco.draw(batcher, stringTiempoLeft, SCREEN_WIDTH / 2
+				- bounds.width / 2, alturaIndicador - 32);
 
 		// fin
 
-		oAssets.fontChco.draw(batcher, "FPS=" + Gdx.graphics.getFramesPerSecond(), 0, 225);
+		oAssets.fontChco.draw(batcher,
+				"FPS=" + Gdx.graphics.getFramesPerSecond(), 0, 225);
 		// oAssets.fontChco.draw(batcher, "Posicion " + oWorld.oPony.lugarEnLaCarrera, 0, 220);
 		oAssets.fontChco.draw(batcher, lapTime, 0, 190);
 	}
@@ -563,7 +586,8 @@ public class GameScreenTileds extends Screens {
 
 	private void presentTimeUp(float delta) {
 
-		oAssets.finCarreraAnimacionTimesUp.apply(oAssets.finCarreraSkeleton, ScreenlastStatetime, ScreenStateTime, false, null);
+		oAssets.finCarreraAnimacionTimesUp.apply(oAssets.finCarreraSkeleton,
+				ScreenlastStatetime, ScreenStateTime, false, null);
 		oAssets.finCarreraSkeleton.setX(SCREEN_WIDTH / 2f);
 		oAssets.finCarreraSkeleton.setY(SCREEN_HEIGHT / 2f);
 		oAssets.finCarreraSkeleton.updateWorldTransform();
@@ -578,7 +602,8 @@ public class GameScreenTileds extends Screens {
 
 	private void presentNextLevel(float delta) {
 
-		oAssets.finCarreraAnimacion1Lugar.apply(oAssets.finCarreraSkeleton, ScreenlastStatetime, ScreenStateTime, false, null);
+		oAssets.finCarreraAnimacion1Lugar.apply(oAssets.finCarreraSkeleton,
+				ScreenlastStatetime, ScreenStateTime, false, null);
 		oAssets.finCarreraSkeleton.setX(SCREEN_WIDTH / 2f);
 		oAssets.finCarreraSkeleton.setY(SCREEN_HEIGHT / 2f);
 		oAssets.finCarreraSkeleton.updateWorldTransform();
@@ -597,7 +622,8 @@ public class GameScreenTileds extends Screens {
 			anim = oAssets.finCarreraAnimacion3Lugar;
 		else
 			anim = oAssets.finCarreraAnimacionGameOver;
-		anim.apply(oAssets.finCarreraSkeleton, ScreenlastStatetime, ScreenStateTime, false, null);
+		anim.apply(oAssets.finCarreraSkeleton, ScreenlastStatetime,
+				ScreenStateTime, false, null);
 		oAssets.finCarreraSkeleton.setX(SCREEN_WIDTH / 2f);
 		oAssets.finCarreraSkeleton.setY(SCREEN_HEIGHT / 2f);
 		oAssets.finCarreraSkeleton.updateWorldTransform();
@@ -667,7 +693,8 @@ public class GameScreenTileds extends Screens {
 	public void setPause() {
 		state = State.paused;
 		stage.clear();
-		WindowStyle windowStyle = new WindowStyle(oAssets.fontGde, Color.WHITE, oAssets.fondoVentanaPause);
+		WindowStyle windowStyle = new WindowStyle(oAssets.fontGde, Color.WHITE,
+				oAssets.fondoVentanaPause);
 
 		Dialog dialogPause = new Dialog("", windowStyle);
 		dialogPause.setTouchable(Touchable.childrenOnly);
@@ -705,14 +732,17 @@ public class GameScreenTileds extends Screens {
 		btMainMenu.addListener(new ClickListener() {
 			public void clicked(InputEvent event, float x, float y) {
 				btMainMenu.wasSelected = true;
-				btMainMenu.addAction(Actions.sequence(Actions.delay(.2f), btMainMenu.accionInicial, Actions.run(new Runnable() {
-					@Override
-					public void run() {
-						GameScreenTileds.this.game.setScreen(new LoadingScreen(game, WorldMapTiledScreen.class));
-						dispose();
+				btMainMenu.addAction(Actions.sequence(Actions.delay(.2f),
+						btMainMenu.accionInicial, Actions.run(new Runnable() {
+							@Override
+							public void run() {
+								GameScreenTileds.this.game
+										.setScreen(new LoadingScreen(game,
+												WorldMapTiledScreen.class));
+								dispose();
 
-					}
-				})));
+							}
+						})));
 			};
 		});
 
@@ -720,15 +750,16 @@ public class GameScreenTileds extends Screens {
 		btContinue.addListener(new ClickListener() {
 			public void clicked(InputEvent event, float x, float y) {
 				btContinue.wasSelected = true;
-				btContinue.addAction(Actions.sequence(Actions.delay(.2f), btContinue.accionInicial, Actions.run(new Runnable() {
-					@Override
-					public void run() {
-						game.reqHandler.hideAdBanner();
-						setBotonesInterfaz();
-						state = State.running;
+				btContinue.addAction(Actions.sequence(Actions.delay(.2f),
+						btContinue.accionInicial, Actions.run(new Runnable() {
+							@Override
+							public void run() {
+								game.reqHandler.hideAdBanner();
+								setBotonesInterfaz();
+								state = State.running;
 
-					}
-				})));
+							}
+						})));
 			};
 		});
 
@@ -736,15 +767,20 @@ public class GameScreenTileds extends Screens {
 		btTryAgain.addListener(new ClickListener() {
 			public void clicked(InputEvent event, float x, float y) {
 				btTryAgain.wasSelected = true;
-				btTryAgain.addAction(Actions.sequence(Actions.delay(.2f), btTryAgain.accionInicial, Actions.run(new Runnable() {
-					@Override
-					public void run() {
-						GameScreenTileds.this.game.setScreen(new LoadingScreen(game, GameScreenTileds.class, nivelTiled));
-						if (Settings.dificultadActual == Settings.DIFICULTAD_SUPERHARD & state == State.nextLevel)
-							Settings.sumarMonedas((int) (MULTIPLICADOR_MONEDAS_TIME_LEFT * oWorld.tiempoLeft));
+				btTryAgain.addAction(Actions.sequence(Actions.delay(.2f),
+						btTryAgain.accionInicial, Actions.run(new Runnable() {
+							@Override
+							public void run() {
+								GameScreenTileds.this.game
+										.setScreen(new LoadingScreen(game,
+												GameScreenTileds.class,
+												nivelTiled));
+								if (Settings.dificultadActual == Settings.DIFICULTAD_SUPERHARD
+										& state == State.nextLevel)
+									Settings.sumarMonedas((int) (MULTIPLICADOR_MONEDAS_TIME_LEFT * oWorld.tiempoLeft));
 
-					}
-				})));
+							}
+						})));
 			};
 		});
 
@@ -752,21 +788,25 @@ public class GameScreenTileds extends Screens {
 		btNextLevel.addListener(new ClickListener() {
 			public void clicked(InputEvent event, float x, float y) {
 				btNextLevel.wasSelected = true;
-				btNextLevel.addAction(Actions.sequence(Actions.delay(.2f), btNextLevel.accionInicial, Actions.run(new Runnable() {
-					@Override
-					public void run() {
-						GameScreenTileds.this.game.setScreen(new LoadingScreen(game, WorldMapTiledScreen.class));
-						if (Settings.dificultadActual == Settings.DIFICULTAD_SUPERHARD)
-							Settings.sumarMonedas((int) (MULTIPLICADOR_MONEDAS_TIME_LEFT * oWorld.tiempoLeft));
+				btNextLevel.addAction(Actions.sequence(Actions.delay(.2f),
+						btNextLevel.accionInicial, Actions.run(new Runnable() {
+							@Override
+							public void run() {
+								GameScreenTileds.this.game
+										.setScreen(new LoadingScreen(game,
+												WorldMapTiledScreen.class));
+								if (Settings.dificultadActual == Settings.DIFICULTAD_SUPERHARD)
+									Settings.sumarMonedas((int) (MULTIPLICADOR_MONEDAS_TIME_LEFT * oWorld.tiempoLeft));
 
-						dispose();
+								dispose();
 
-					}
-				})));
+							}
+						})));
 			};
 		});
 
-		btSonido = new ImageButton(oAssets.btSonidoOff, null, oAssets.btSonidoON);
+		btSonido = new ImageButton(oAssets.btSonidoOff, null,
+				oAssets.btSonidoON);
 		btSonido.setChecked(Settings.isSonidoON);
 		btSonido.addListener(new ClickListener() {
 			@Override
@@ -776,7 +816,8 @@ public class GameScreenTileds extends Screens {
 			}
 		});
 
-		btMusica = new ImageButton(oAssets.btMusicaOff, null, oAssets.btMusicaON);
+		btMusica = new ImageButton(oAssets.btMusicaOff, null,
+				oAssets.btMusicaON);
 		btMusica.setChecked(Settings.isMusicaON);
 		btMusica.addListener(new ClickListener() {
 			@Override
@@ -806,10 +847,14 @@ public class GameScreenTileds extends Screens {
 		if (oWorld == null || renderer == null)
 			return;
 		// Checo el achivmente de las monedas
-		game.achievements.checkMonedasAchivments(oWorld.oPony.monedasRecolectadas);
-		game.achievements.checkEatChiliAchievements(oWorld.oPony.chilesRecolectados);
-		game.achievements.checkEatChocolateAchievements(oWorld.oPony.dulcesRecolectados);
-		game.achievements.checkGetBallonsAchievements(oWorld.oPony.globosRecolectados);
+		game.achievements
+				.checkMonedasAchivments(oWorld.oPony.monedasRecolectadas);
+		game.achievements
+				.checkEatChiliAchievements(oWorld.oPony.chilesRecolectados);
+		game.achievements
+				.checkEatChocolateAchievements(oWorld.oPony.dulcesRecolectados);
+		game.achievements
+				.checkGetBallonsAchievements(oWorld.oPony.globosRecolectados);
 
 		oWorld.oWorldBox.dispose();
 		renderer.renderBox.dispose();
@@ -864,7 +909,8 @@ public class GameScreenTileds extends Screens {
 			if (state == State.running)
 				setPause();
 			else {
-				game.setScreen(new LoadingScreen(game, WorldMapTiledScreen.class));
+				game.setScreen(new LoadingScreen(game,
+						WorldMapTiledScreen.class));
 				dispose();
 			}
 			return true;

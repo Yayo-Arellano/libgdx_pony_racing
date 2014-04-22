@@ -6,13 +6,9 @@
     <classpathentry kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
     <classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
     <classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.DEPENDENCIES"/>
-    <classpathentry combineaccessrules="false" kind="src" path="/spine-libgdx"/>
     <classpathentry kind="output" path="bin/classes"/>
     <classpathentry exported="true" kind="lib" path="libs/gdx-backend-android.jar" sourcepath="libs/gdx-backend-android-sources.jar"/>
-    <classpathentry exported="true" kind="lib" path="/PonyRace/libs/bodyeditor-loader.jar" sourcepath="/PonyRace/libs/bodyeditor-loader-sources.jar"/>
     <classpathentry exported="true" kind="lib" path="/PonyRace/libs/gdx.jar" sourcepath="/PonyRace/libs/gdx-sources.jar"/>
-    <classpathentry exported="true" kind="lib" path="/PonyRace/libs/tween-engine-api.jar" sourcepath="/PonyRace/libs/tween-engine-api-sources.jar"/>
-    <classpathentry exported="true" kind="lib" path="/Users/Yayo/AndroidStuff/Programas YaYo/GoogleAdMobAdsSdk-6.4.1.jar"/>
     <classpathentry exported="true" kind="lib" path="/Users/Yayo/AndroidStuff/Programas YaYo/GoogleAdMob_MobFoxSDK_Android_4.1.6.jar"/>
-    <classpathentry exported="true" kind="lib" path="/Users/Yayo/AndroidStuff/Programas YaYo/StartAppInApp-2.0.7.jar"/>
+    <classpathentry exported="true" kind="lib" path="/Users/Yayo/AndroidStuff/Programas YaYo/StartAppInApp-2.3.jar"/>
 </classpath>

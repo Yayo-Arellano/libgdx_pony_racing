@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont.TextBounds;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -79,6 +80,9 @@ public abstract class Screens extends InputAdapter implements Screen {
 		ScreenStateTime += delta;
 
 		update(delta);
+
+		Gdx.gl.glClearColor(0, 0, 0, 0);
+		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		draw(delta);
 
 		// if(Gdx.input.justTouched())
@@ -94,7 +98,7 @@ public abstract class Screens extends InputAdapter implements Screen {
 
 	@Override
 	public void resize(int width, int height) {
-		stage.setViewport(Screens.SCREEN_WIDTH, Screens.SCREEN_HEIGHT, false);
+		stage.getViewport().update(width, height, true);
 	}
 
 	@Override

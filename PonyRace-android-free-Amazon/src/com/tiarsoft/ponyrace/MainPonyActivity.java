@@ -4,7 +4,7 @@ import android.os.Bundle;
 
 import com.tiarsoft.ponyrace.MainPonyRace.Tienda;
 
-public class MainPonyActivity extends MainPonyAGCActivity {
+public class MainPonyActivity extends PonyRaceAGC {
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {

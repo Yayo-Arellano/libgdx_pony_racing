@@ -11,7 +11,6 @@ public class Main {
 	public static void main(String[] args) {
 		LwjglApplicationConfiguration cfg = new LwjglApplicationConfiguration();
 		cfg.title = "PonyRace";
-		cfg.useGL20 = true;
 		cfg.width = 800;
 		cfg.height = 480;
 
@@ -35,7 +34,8 @@ public class Main {
 		// }
 		// });
 
-		new LwjglApplication(new MainPonyRace(Tienda.none, handler, gameServicesHandler), cfg);
+		new LwjglApplication(new MainPonyRace(Tienda.none, handler,
+				gameServicesHandler), cfg);
 
 	}
 
@@ -87,7 +87,8 @@ public class Main {
 	static GameServicesHandler gameServicesHandler = new GameServicesHandler() {
 
 		@Override
-		public void unlockIncrementalAchievementGPGS(String achievementId, int pasosDados) {
+		public void unlockIncrementalAchievementGPGS(String achievementId,
+				int pasosDados) {
 			// TODO Auto-generated method stub
 
 		}
