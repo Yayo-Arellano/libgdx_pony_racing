@@ -20,7 +20,7 @@ public class Settings {
 	public static boolean isSonidoON = false;
 	public static boolean isMusicaON = false;
 
-	public static int mundosDesbloqueados = 1;
+	public static int mundosDesbloqueados;
 
 	public static boolean seDioLike = false;
 	public static boolean seCalificoApp = false;
@@ -58,7 +58,6 @@ public class Settings {
 
 		skinSeleccionada = pref.getString("skinSeleccionada", "Cloud");
 		mundosDesbloqueados = pref.getInteger("mundosDesbloqueados", 1);
-		mundosDesbloqueados = 17;
 
 		// Itemes usables en juego Mondeas bombas
 		numeroBombas = pref.getInteger("numeroBombas", 25);
@@ -78,7 +77,8 @@ public class Settings {
 		nivelCoin = pref.getInteger("nivelCoin", 0);
 		nivelTime = pref.getInteger("nivelTime", 0);
 
-		dificultadActual = pref.getInteger("dificultadActual", DIFICULTAD_NORMAL);
+		dificultadActual = pref.getInteger("dificultadActual",
+				DIFICULTAD_NORMAL);
 
 	}
 

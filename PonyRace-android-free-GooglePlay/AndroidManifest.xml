@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.tiarsoft.ponyrace"
+    package="com.tiarsoft.ponyracing"
     android:installLocation="auto"
     android:versionCode="30"
     android:versionName="1" >
