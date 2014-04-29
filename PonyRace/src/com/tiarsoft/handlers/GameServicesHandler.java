@@ -30,12 +30,13 @@ public interface GameServicesHandler {
 	 */
 	public void getAchievements();
 
-	public boolean isSignedInGPGS();
+	public boolean isSignedIn();
 
-	public void signInGPGS();
+	public void signIn();
 
-	public void signOutGPGS();
+	public void signOut();
 
-	public void unlockIncrementalAchievementGPGS(String achievementId, int pasosDados);
+	public void unlockIncrementalAchievement(String achievementId,
+			int pasosDados);
 
 }

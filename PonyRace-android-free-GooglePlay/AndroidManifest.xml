@@ -8,8 +8,7 @@
     <!-- Admobs -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
-    <!-- Startapp -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
     <!--
@@ -20,6 +19,10 @@
     <uses-sdk
         android:minSdkVersion="10"
         android:targetSdkVersion="19" />
+
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true" />
 
     <application
         android:allowBackup="false"
@@ -62,29 +65,42 @@
         <!-- Fin Google play Admobs -->
 
 
-        <!-- MobFox Activity -->
+        <!-- Mopub -->
         <activity
-            android:name="com.adsdk.sdk.banner.InAppWebView"
+            android:name="com.mopub.mobileads.MoPubActivity"
+            android:configChanges="keyboardHidden|orientation" />
+        <activity
+            android:name="com.mopub.mobileads.MraidActivity"
+            android:configChanges="keyboardHidden|orientation" />
+        <activity
+            android:name="com.mopub.common.MoPubBrowser"
+            android:configChanges="keyboardHidden|orientation" />
+        <activity
+            android:name="com.mopub.mobileads.MraidVideoPlayerActivity"
+            android:configChanges="keyboardHidden|orientation" />
+        <activity
+            android:name="com.google.ads.AdActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize" />
         <activity
-            android:name="com.adsdk.sdk.video.RichMediaActivity"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
-            android:hardwareAccelerated="false" />
+            android:name="com.millennialmedia.android.MMActivity"
+            android:configChanges="keyboardHidden|orientation|keyboard"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity
-            android:name="com.adsdk.sdk.mraid.MraidActivity"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize" />
-        <!-- Fin MobFox Activity -->
+            android:name="com.millennialmedia.android.VideoPlayer"
+            android:configChanges="keyboardHidden|orientation|keyboard" />
+
+        <!-- FIn  Mopub -->
 
 
         <!-- StartApp -->
         <activity
             android:name="com.startapp.android.publish.list3d.List3DActivity"
-            android:taskAffinity="com.tiarsoft.ponyrace.AppWall"
+            android:taskAffinity="com.tiarsoft.ponyracing.AppWall"
             android:theme="@android:style/Theme" />
         <activity
             android:name="com.startapp.android.publish.AppWallActivity"
             android:configChanges="orientation|keyboardHidden"
-            android:taskAffinity="com.tiarsoft.ponyrace.AppWall"
+            android:taskAffinity="com.tiarsoft.ponyracing.AppWall"
             android:theme="@android:style/Theme.Translucent" />
         <!-- fin -->
 

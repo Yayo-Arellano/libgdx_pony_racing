@@ -7,26 +7,21 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.LinearLayout;
+import android.widget.FrameLayout;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
-import com.google.android.gms.ads.AdListener;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdSize;
-import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.InterstitialAd;
-import com.startapp.android.publish.Ad;
-import com.startapp.android.publish.AdDisplayListener;
+import com.mopub.mobileads.MoPubInterstitial;
+import com.mopub.mobileads.MoPubView;
 import com.startapp.android.publish.StartAppAd;
 import com.tiarsoft.handlers.RequestHandler;
 import com.tiarsoft.ponyrace.MainPonyRace.Tienda;
-import com.tiarsoft.ponyrace.game.GameScreenTileds;
 
 public class MainActivity extends AndroidApplication implements RequestHandler {
-	String admobIdBanner = "1c54c7ef4c6b4a0e";
-	String admobIdInterstitial = "7cf10305e521450e";
+
+	String mopubBannerId = "38cb02c442e64c588a98e0636855988d";
+	String mopubInterId = "2681a6f09b7c4697a5c36282e4364310";
 
 	String StartppDeveloperId = "104087430";
 	String StartappAppId = "212101412";
@@ -36,11 +31,9 @@ public class MainActivity extends AndroidApplication implements RequestHandler {
 	public Tienda tienda;
 	protected MainPonyRace game;
 
-	InterstitialAd interAdmob;
-	AdView bannerAdmob;
-	AdRequest adRequest;
-	StartAppAd interStartApp;
-	LinearLayout layout;
+	MoPubInterstitial interMopub;
+	MoPubView bannerMopub;
+	FrameLayout layout;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -57,52 +50,29 @@ public class MainActivity extends AndroidApplication implements RequestHandler {
 				WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
 
 		View gameView = initializeForView(game, cfg);
-		bannerAdmob = new AdView(this);
-		bannerAdmob.setAdSize(AdSize.SMART_BANNER);
-		bannerAdmob.setAdUnitId(admobIdBanner);
 
-		layout = new LinearLayout(this);
-		layout.setOrientation(LinearLayout.VERTICAL);
-		layout.setGravity(Gravity.CENTER);
+		bannerMopub = new MoPubView(this);
+		bannerMopub.setAdUnitId(mopubBannerId); // Enter your Ad Unit ID from www.mopub.com
+		bannerMopub.setLayoutParams(new FrameLayout.LayoutParams(
+				FrameLayout.LayoutParams.MATCH_PARENT,
+				FrameLayout.LayoutParams.WRAP_CONTENT, Gravity.TOP));
+		bannerMopub.loadAd();
 
-		layout.addView(bannerAdmob, new LinearLayout.LayoutParams(
-				LinearLayout.LayoutParams.MATCH_PARENT,
-				LinearLayout.LayoutParams.WRAP_CONTENT));
-		layout.addView(gameView, new LinearLayout.LayoutParams(
-				LinearLayout.LayoutParams.MATCH_PARENT, 0, 1));
+		layout = new FrameLayout(this);
+		layout.addView(gameView, new FrameLayout.LayoutParams(
+				FrameLayout.LayoutParams.MATCH_PARENT,
+				FrameLayout.LayoutParams.MATCH_PARENT));
 
 		setContentView(layout);
 
-		adRequest = new AdRequest.Builder()//
-				// .addTestDevice("1854CA4BA5218E72358728EB28DC2CED")//
-				.build();
-
-		bannerAdmob.loadAd(adRequest);
-		interAdmob = new InterstitialAd(this);
-		interAdmob.setAdUnitId(admobIdInterstitial);
-		interAdmob.loadAd(adRequest);
-
-		interStartApp = new StartAppAd(this);
-	}
-
-	@Override
-	protected void onResume() {
-		super.onResume();
-		interStartApp.onResume();
-		interStartApp.loadAd();
-		bannerAdmob.resume();
-	}
-
-	@Override
-	protected void onPause() {
-		bannerAdmob.pause();
-		super.onPause();
-
+		interMopub = new MoPubInterstitial(this, mopubInterId);
+		interMopub.load();
 	}
 
 	@Override
 	protected void onDestroy() {
-		bannerAdmob.destroy();
+		bannerMopub.destroy();
+		interMopub.destroy();
 		super.onDestroy();
 	}
 
@@ -114,110 +84,19 @@ public class MainActivity extends AndroidApplication implements RequestHandler {
 	public void showInterstitial() {
 		runOnUiThread(new Runnable() {
 			public void run() {
-				showStartAppInterstitial();
+				if (interMopub.isReady()) {
+					interMopub.show();
+
+				}
+				interMopub.load();
 			}
 
-		});
-	}
-
-	private void showGoogleInterstitial() {
-		if (interAdmob.isLoaded()) {
-			interAdmob.setAdListener(new AdListener() {
-				@Override
-				public void onAdOpened() {
-					if (game.getScreen() instanceof GameScreenTileds) {
-						GameScreenTileds screen = (GameScreenTileds) game
-								.getScreen();
-						screen.setPause();
-					}
-				}
-			});
-			interAdmob.show();
-		}
-		interAdmob.loadAd(adRequest);
-
-	}
-
-	private void showStartAppInterstitial() {
-		if (interStartApp.isReady()) {
-			interStartApp.showAd(new AdDisplayListener() {
-
-				@Override
-				public void adHidden(Ad arg0) {
-					// TODO Auto-generated method stub
-
-				}
-
-				@Override
-				public void adDisplayed(Ad arg0) {
-					if (game.getScreen() instanceof GameScreenTileds) {
-						GameScreenTileds screen = (GameScreenTileds) game
-								.getScreen();
-						screen.setPause();
-
-					}
-				}
-			});
-		}
-		else {
-
-			showGoogleInterstitial();
-		}
-		interStartApp.loadAd();
-
-	}
-
-	@Override
-	public void showRater() {
-		runOnUiThread(new Runnable() {
-			public void run() {
-				String nombrePaquete = MainActivity.this.getPackageName();
-				String linkTienda;
-				if (tienda == Tienda.amazon) {
-					linkTienda = "amzn://apps/android?p=";
-				}
-				else if (tienda == Tienda.googlePlay) {
-					linkTienda = "market://details?id=";
-				}
-				else if (tienda == Tienda.samsung) {
-					linkTienda = "samsungapps://ProductDetail/";
-				}
-				else {
-					linkTienda = "sam://details?id=";
-				}
-
-				Intent intent = new Intent(Intent.ACTION_VIEW);
-				intent.setData(Uri.parse(linkTienda + nombrePaquete));
-				// intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_INCLUDE_STOPPED_PACKAGES);
-
-				Settings.seCalificoApp = true;
-				Settings.guardar();
-				MainActivity.this.startActivity(intent);
-			}
 		});
 	}
 
 	@Override
 	public void shareOnFacebook(final String mensaje) {
 
-	}
-
-	@Override
-	public void showMoreGames() {
-		String linkTienda;
-		if (tienda == Tienda.amazon) {
-			linkTienda = "amzn://apps/android?s=tiarsoft";
-		}
-		else if (tienda == Tienda.googlePlay) {
-			linkTienda = "https://play.google.com/store/apps/developer?id=TiarSoft";
-		}
-		else if (tienda == Tienda.samsung) {
-			linkTienda = "samsungapps://SellerDetail/qotluyngkp";
-		}
-		else {
-			linkTienda = "sam://search?q=yayo28";
-		}
-		Gdx.net.openURI(linkTienda);
 	}
 
 	@Override
@@ -240,14 +119,83 @@ public class MainActivity extends AndroidApplication implements RequestHandler {
 	}
 
 	@Override
+	public void shareOnTwitter(String mensaje) {
+		String tweetUrl = "https://twitter.com/intent/tweet?text=" + mensaje
+				+ " Download it from &url="
+				+ "http://goo.gl/h1Msy7&hashtags=PonyRacing";
+		Gdx.net.openURI(tweetUrl);
+
+	}
+
+	@Override
+	public void showMoreGames() {
+		String linkTienda;
+		if (tienda == Tienda.amazon) {
+			linkTienda = "amzn://apps/android?s=tiarsoft";
+		}
+		else if (tienda == Tienda.samsung) {
+			linkTienda = "samsungapps://SellerDetail/qotluyngkp";
+		}
+		else if (tienda == Tienda.slideMe) {
+			linkTienda = "sam://search?q=yayo28";
+		}
+		else
+			linkTienda = "market://developer?id=TiarSoft";
+		Gdx.net.openURI(linkTienda);
+	}
+
+	@Override
+	public void showRater() {
+		runOnUiThread(new Runnable() {
+			public void run() {
+				String nombrePaquete = MainActivity.this.getPackageName();
+				String linkTienda;
+				if (tienda == Tienda.amazon) {
+					linkTienda = "amzn://apps/android?p=";
+				}
+				else if (tienda == Tienda.samsung) {
+					linkTienda = "samsungapps://ProductDetail/";
+				}
+				else if (tienda == Tienda.slideMe) {
+					linkTienda = "sam://details?id=";
+				}
+				else {// GooglePlay, Yandex, Otros
+					linkTienda = "market://details?id=";
+				}
+
+				Intent intent = new Intent(Intent.ACTION_VIEW);
+				intent.setData(Uri.parse(linkTienda + nombrePaquete));
+				// intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_INCLUDE_STOPPED_PACKAGES);
+
+				Settings.seCalificoApp = true;
+				Settings.guardar();
+				MainActivity.this.startActivity(intent);
+
+			}
+		});
+	}
+
+	@Override
 	public void showAdBanner() {
-		// TODO Auto-generated method stub
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				if (bannerMopub.getParent() != layout)
+					layout.addView(bannerMopub);
+			}
+		});
 
 	}
 
 	@Override
 	public void hideAdBanner() {
-		// TODO Auto-generated method stub
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				layout.removeView(bannerMopub);
+			}
+		});
 
 	}
+
 }

@@ -98,7 +98,7 @@ public class LeaderboardChooseScreen extends Screens {
 		btSignOut.setPosition(5, 5);
 		btSignOut.addListener(new ClickListener() {
 			public void clicked(InputEvent event, float x, float y) {
-				game.gameServiceHandler.signInGPGS();
+				game.gameServiceHandler.signIn();
 				LeaderboardChooseScreen.this.game
 						.setScreen(new LoadingScreen(
 								LeaderboardChooseScreen.this.game,

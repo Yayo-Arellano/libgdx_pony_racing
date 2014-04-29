@@ -2,6 +2,7 @@ package com.tiarsoft.ponyrace;
 
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
+import com.badlogic.gdx.tools.texturepacker.TexturePacker;
 import com.tiarsoft.handlers.GameServicesHandler;
 import com.tiarsoft.handlers.RequestHandler;
 import com.tiarsoft.ponyrace.MainPonyRace.Tienda;
@@ -16,12 +17,19 @@ public class Main {
 
 		// cfg.fullscreen = true;
 
-		// TexturePacker2.Settings settings = new TexturePacker2.Settings();
-		// settings.combineSubdirectories = true;
-		// settings.flattenPaths = true;
-		// settings.alias = false;
-		//
-		// TexturePacker2.process(settings, "/Users/Yayo/Pictures/Games/PonyRace/comun", "/Users/Yayo/Pictures/Games/PonyRace", "atlasComun.txt");
+		TexturePacker.Settings settings = new TexturePacker.Settings();
+		settings.combineSubdirectories = true;
+		settings.flattenPaths = true;
+		settings.alias = false;
+		settings.pot = false;
+		settings.square = false;
+
+		// TexturePacker
+		// .process(
+		// settings,
+		// "/Users/Yayo/Dropbox/Tiarsoft/Pony Games Racing/Imagenes/comun",
+		// "/Users/Yayo/Dropbox/Tiarsoft/Pony Games Racing/Imagenes",
+		// "atlasComun.txt");
 
 		// Thread.setDefaultUncaughtExceptionHandler(new UncaughtExceptionHandler() {
 		//
@@ -82,16 +90,15 @@ public class Main {
 			// TODO Auto-generated method stub
 
 		}
-	};
-
-	static GameServicesHandler gameServicesHandler = new GameServicesHandler() {
 
 		@Override
-		public void unlockIncrementalAchievementGPGS(String achievementId,
-				int pasosDados) {
+		public void shareOnTwitter(String mensaje) {
 			// TODO Auto-generated method stub
 
 		}
+	};
+
+	static GameServicesHandler gameServicesHandler = new GameServicesHandler() {
 
 		@Override
 		public void unlockAchievement(String achievementId) {
@@ -106,24 +113,6 @@ public class Main {
 		}
 
 		@Override
-		public void signOutGPGS() {
-			// TODO Auto-generated method stub
-
-		}
-
-		@Override
-		public void signInGPGS() {
-			// TODO Auto-generated method stub
-
-		}
-
-		@Override
-		public boolean isSignedInGPGS() {
-			// TODO Auto-generated method stub
-			return false;
-		}
-
-		@Override
 		public void getLeaderboard() {
 			// TODO Auto-generated method stub
 
@@ -131,6 +120,31 @@ public class Main {
 
 		@Override
 		public void getAchievements() {
+			// TODO Auto-generated method stub
+
+		}
+
+		@Override
+		public boolean isSignedIn() {
+			// TODO Auto-generated method stub
+			return false;
+		}
+
+		@Override
+		public void signIn() {
+			// TODO Auto-generated method stub
+
+		}
+
+		@Override
+		public void signOut() {
+			// TODO Auto-generated method stub
+
+		}
+
+		@Override
+		public void unlockIncrementalAchievement(String achievementId,
+				int pasosDados) {
 			// TODO Auto-generated method stub
 
 		}

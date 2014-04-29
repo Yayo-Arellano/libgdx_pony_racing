@@ -52,11 +52,6 @@ public class MainMenuScreen extends Screens {
 		oAssets.skeletonMenuTitle.setX(400);
 		oAssets.skeletonMenuTitle.setY(370);
 
-		if (game.gameServiceHandler instanceof GoogleGameServicesHandler) {
-			if (Settings.statTimesPlayed == 0
-					&& !game.gameServiceHandler.isSignedInGPGS())
-				game.signin.showDialogSignIn();
-		}
 	}
 
 	public void cargarBotones() {
@@ -111,9 +106,8 @@ public class MainMenuScreen extends Screens {
 							@Override
 							public void run() {
 								if (game.gameServiceHandler instanceof GoogleGameServicesHandler) {
-									if (!game.gameServiceHandler
-											.isSignedInGPGS())
-										game.signin.showDialogSignIn();
+									if (!game.gameServiceHandler.isSignedIn())
+										game.gameServiceHandler.signIn();
 									else
 										game.setScreen(new LoadingScreen(game,
 												LeaderboardChooseScreen.class));

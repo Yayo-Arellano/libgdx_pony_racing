@@ -96,17 +96,23 @@ public class Achievements {
 	public void checkHitBombAchievements() {
 		if (!isGoogleGameServices)
 			return;
-		gameServicesHandler.unlockIncrementalAchievementGPGS("CgkI55iksNMTEAIQDw", 1);// Did someone said bombs?
-		gameServicesHandler.unlockIncrementalAchievementGPGS("CgkI55iksNMTEAIQEA", 1);// Rain Boom Pony
-		gameServicesHandler.unlockIncrementalAchievementGPGS("CgkI55iksNMTEAIQEQ", 1);// Bomb - A - Tron
+		gameServicesHandler.unlockIncrementalAchievement(
+				"CgkI55iksNMTEAIQDw", 1);// Did someone said bombs?
+		gameServicesHandler.unlockIncrementalAchievement(
+				"CgkI55iksNMTEAIQEA", 1);// Rain Boom Pony
+		gameServicesHandler.unlockIncrementalAchievement(
+				"CgkI55iksNMTEAIQEQ", 1);// Bomb - A - Tron
 	}
 
 	public void checkHitSpikeAchievements() {
 		if (!isGoogleGameServices)
 			return;
-		gameServicesHandler.unlockIncrementalAchievementGPGS("CgkI55iksNMTEAIQFg", 1);// Hold On!
-		gameServicesHandler.unlockIncrementalAchievementGPGS("CgkI55iksNMTEAIQFw", 1);// Trap Master
-		gameServicesHandler.unlockIncrementalAchievementGPGS("CgkI55iksNMTEAIQGQ", 1);// You will never catch me!
+		gameServicesHandler.unlockIncrementalAchievement(
+				"CgkI55iksNMTEAIQFg", 1);// Hold On!
+		gameServicesHandler.unlockIncrementalAchievement(
+				"CgkI55iksNMTEAIQFw", 1);// Trap Master
+		gameServicesHandler.unlockIncrementalAchievement(
+				"CgkI55iksNMTEAIQGQ", 1);// You will never catch me!
 	}
 
 	public void checkEatChocolateAchievements(int duclesTomadosLevel) {
@@ -114,18 +120,25 @@ public class Achievements {
 			return;
 		if (duclesTomadosLevel <= 0)
 			return;
-		gameServicesHandler.unlockIncrementalAchievementGPGS("CgkI55iksNMTEAIQGg", duclesTomadosLevel);// Chocolate Taster
-		gameServicesHandler.unlockIncrementalAchievementGPGS("CgkI55iksNMTEAIQGw", duclesTomadosLevel);// Sugar Rush
-		gameServicesHandler.unlockIncrementalAchievementGPGS("CgkI55iksNMTEAIQHA", duclesTomadosLevel);// i might need a diet
+		gameServicesHandler.unlockIncrementalAchievement(
+				"CgkI55iksNMTEAIQGg", duclesTomadosLevel);// Chocolate Taster
+		gameServicesHandler.unlockIncrementalAchievement(
+				"CgkI55iksNMTEAIQGw", duclesTomadosLevel);// Sugar Rush
+		gameServicesHandler.unlockIncrementalAchievement(
+				"CgkI55iksNMTEAIQHA", duclesTomadosLevel);// i might need a diet
 	}
 
 	public void checkWinFirstPlaceAchievements() {
 		if (!isGoogleGameServices)
 			return;
-		gameServicesHandler.unlockIncrementalAchievementGPGS("CgkI55iksNMTEAIQHw", 1);// Need for Speed
-		gameServicesHandler.unlockIncrementalAchievementGPGS("CgkI55iksNMTEAIQIA", 1);// Speed Demon
-		gameServicesHandler.unlockIncrementalAchievementGPGS("CgkI55iksNMTEAIQIQ", 1);// Racing Blood
-		gameServicesHandler.unlockIncrementalAchievementGPGS("CgkI55iksNMTEAIQIg", 1);// Sure you love this game!
+		gameServicesHandler.unlockIncrementalAchievement(
+				"CgkI55iksNMTEAIQHw", 1);// Need for Speed
+		gameServicesHandler.unlockIncrementalAchievement(
+				"CgkI55iksNMTEAIQIA", 1);// Speed Demon
+		gameServicesHandler.unlockIncrementalAchievement(
+				"CgkI55iksNMTEAIQIQ", 1);// Racing Blood
+		gameServicesHandler.unlockIncrementalAchievement(
+				"CgkI55iksNMTEAIQIg", 1);// Sure you love this game!
 
 	}
 
@@ -134,9 +147,12 @@ public class Achievements {
 			return;
 		if (chilesTomadosLevel <= 0)
 			return;
-		gameServicesHandler.unlockIncrementalAchievementGPGS("CgkI55iksNMTEAIQIw", chilesTomadosLevel);// 18 Spicy
-		gameServicesHandler.unlockIncrementalAchievementGPGS("CgkI55iksNMTEAIQJA", chilesTomadosLevel);// 19 Breath of fire
-		gameServicesHandler.unlockIncrementalAchievementGPGS("CgkI55iksNMTEAIQJQ", chilesTomadosLevel);// 20 Iron pony
+		gameServicesHandler.unlockIncrementalAchievement(
+				"CgkI55iksNMTEAIQIw", chilesTomadosLevel);// 18 Spicy
+		gameServicesHandler.unlockIncrementalAchievement(
+				"CgkI55iksNMTEAIQJA", chilesTomadosLevel);// 19 Breath of fire
+		gameServicesHandler.unlockIncrementalAchievement(
+				"CgkI55iksNMTEAIQJQ", chilesTomadosLevel);// 20 Iron pony
 	}
 
 	public void checkMonedasAchivments(int monedasTomadasLevel) {
@@ -145,13 +161,16 @@ public class Achievements {
 		if (monedasTomadasLevel <= 0)
 			return;
 		if (Settings.statMonedasTotal < 1000)
-			gameServicesHandler.unlockIncrementalAchievementGPGS("CgkI55iksNMTEAIQCg", monedasTomadasLevel);// 21 You got any spare change?
+			gameServicesHandler.unlockIncrementalAchievement(
+					"CgkI55iksNMTEAIQCg", monedasTomadasLevel);// 21 You got any spare change?
 
 		if (Settings.statMonedasTotal < 2000)
-			gameServicesHandler.unlockIncrementalAchievementGPGS("CgkI55iksNMTEAIQCw", monedasTomadasLevel);// 22 Got my mind on my money
+			gameServicesHandler.unlockIncrementalAchievement(
+					"CgkI55iksNMTEAIQCw", monedasTomadasLevel);// 22 Got my mind on my money
 
 		if (Settings.statMonedasTotal < 12000)
-			gameServicesHandler.unlockIncrementalAchievementGPGS("CgkI55iksNMTEAIQDA", monedasTomadasLevel);// 23 My name is not Filthy Rich
+			gameServicesHandler.unlockIncrementalAchievement(
+					"CgkI55iksNMTEAIQDA", monedasTomadasLevel);// 23 My name is not Filthy Rich
 
 		int auxMonedasTomadas = monedasTomadasLevel;
 		int steps = 0;
@@ -162,7 +181,8 @@ public class Achievements {
 			auxMonedasTomadas -= 10;
 		}
 		if (steps > 0)
-			gameServicesHandler.unlockIncrementalAchievementGPGS("CgkI55iksNMTEAIQDQ", steps);// 24 A Lot of Bits!
+			gameServicesHandler.unlockIncrementalAchievement(
+					"CgkI55iksNMTEAIQDQ", steps);// 24 A Lot of Bits!
 
 		auxMonedasTomadas = monedasTomadasLevel;
 		steps = 0;
@@ -172,7 +192,8 @@ public class Achievements {
 			auxMonedasTomadas -= 100;
 		}
 		if (steps > 0)
-			gameServicesHandler.unlockIncrementalAchievementGPGS("CgkI55iksNMTEAIQDg", steps);// 25 One in a Million!
+			gameServicesHandler.unlockIncrementalAchievement(
+					"CgkI55iksNMTEAIQDg", steps);// 25 One in a Million!
 	}
 
 	public void checkGetBallonsAchievements(int globosTomadosLevel) {
@@ -180,9 +201,12 @@ public class Achievements {
 			return;
 		if (globosTomadosLevel <= 0)
 			return;
-		gameServicesHandler.unlockIncrementalAchievementGPGS("CgkI55iksNMTEAIQJg", globosTomadosLevel);// 26 Time Seeker
-		gameServicesHandler.unlockIncrementalAchievementGPGS("CgkI55iksNMTEAIQJw", globosTomadosLevel);// 27 Time to Spare
-		gameServicesHandler.unlockIncrementalAchievementGPGS("CgkI55iksNMTEAIQKA", globosTomadosLevel);// 28 Time Agent
+		gameServicesHandler.unlockIncrementalAchievement("CgkI55iksNMTEAIQJg",
+				globosTomadosLevel);// 26 Time Seeker
+		gameServicesHandler.unlockIncrementalAchievement(
+				"CgkI55iksNMTEAIQJw", globosTomadosLevel);// 27 Time to Spare
+		gameServicesHandler.unlockIncrementalAchievement(
+				"CgkI55iksNMTEAIQKA", globosTomadosLevel);// 28 Time Agent
 	}
 
 	// ------
@@ -198,42 +222,45 @@ public class Achievements {
 	public void checkVictoryMoreThan15Secs(int nivelTiled, float timeLeft) {
 		if (timeLeft >= 15) {
 			switch (nivelTiled) {
-				case 1:
-					prefAchiv.putBoolean("world_1_15Secs", world_1_15Secs);
-					break;
-				case 2:
-					prefAchiv.putBoolean("world_2_15Secs", world_2_15Secs);
-					break;
-				case 3:
-					prefAchiv.putBoolean("world_3_15Secs", world_3_15Secs);
-					break;
-				case 4:
-					prefAchiv.putBoolean("world_4_15Secs", world_4_15Secs);
-					break;
-				case 5:
-					prefAchiv.putBoolean("world_5_15Secs", world_5_15Secs);
-					break;
-				case 6:
-					prefAchiv.putBoolean("world_6_15Secs", world_6_15Secs);
-					break;
-				case 7:
-					prefAchiv.putBoolean("world_7_15Secs", world_7_15Secs);
-					break;
-				case 8:
-					prefAchiv.putBoolean("world_8_15Secs", world_8_15Secs);
-					break;
+			case 1:
+				prefAchiv.putBoolean("world_1_15Secs", world_1_15Secs);
+				break;
+			case 2:
+				prefAchiv.putBoolean("world_2_15Secs", world_2_15Secs);
+				break;
+			case 3:
+				prefAchiv.putBoolean("world_3_15Secs", world_3_15Secs);
+				break;
+			case 4:
+				prefAchiv.putBoolean("world_4_15Secs", world_4_15Secs);
+				break;
+			case 5:
+				prefAchiv.putBoolean("world_5_15Secs", world_5_15Secs);
+				break;
+			case 6:
+				prefAchiv.putBoolean("world_6_15Secs", world_6_15Secs);
+				break;
+			case 7:
+				prefAchiv.putBoolean("world_7_15Secs", world_7_15Secs);
+				break;
+			case 8:
+				prefAchiv.putBoolean("world_8_15Secs", world_8_15Secs);
+				break;
 
 			}
 			prefAchiv.flush();
 		}
 
-		if (world_1_15Secs && world_2_15Secs && world_3_15Secs && world_4_15Secs && world_5_15Secs && world_6_15Secs && world_7_15Secs && world_8_15Secs) {
+		if (world_1_15Secs && world_2_15Secs && world_3_15Secs
+				&& world_4_15Secs && world_5_15Secs && world_6_15Secs
+				&& world_7_15Secs && world_8_15Secs) {
 			gameServicesHandler.unlockAchievement(FASTER_THAN_THE_MAKER);// 29 Faster than the maker!
 		}
 	}
 
 	public void checkUpgradesAchivmentes() {
-		if (Settings.nivelChocolate >= 5 && Settings.nivelChili >= 5 && Settings.nivelBallon >= 5) {
+		if (Settings.nivelChocolate >= 5 && Settings.nivelChili >= 5
+				&& Settings.nivelBallon >= 5) {
 			gameServicesHandler.unlockAchievement(I_WORK_OUT);// 30 I work out!
 		}
 	}
@@ -286,134 +313,134 @@ public class Achievements {
 
 	public void checkWorldComplete(int nivelTiled) {
 		switch (nivelTiled) {
-			case 1:
-				switch (Settings.dificultadActual) {
-					case Settings.DIFICULTAD_EASY:
-						world_1_easy = true;
-						break;
-					case Settings.DIFICULTAD_NORMAL:
-						world_1_normal = true;
-						break;
-					case Settings.DIFICULTAD_HARD:
-						world_1_hard = true;
-						break;
-					case Settings.DIFICULTAD_SUPERHARD:
-						world_1_superHard = true;
-						break;
-				}
+		case 1:
+			switch (Settings.dificultadActual) {
+			case Settings.DIFICULTAD_EASY:
+				world_1_easy = true;
 				break;
-			case 2:
-				switch (Settings.dificultadActual) {
-					case Settings.DIFICULTAD_EASY:
-						world_2_easy = true;
-						break;
-					case Settings.DIFICULTAD_NORMAL:
-						world_2_normal = true;
-						break;
-					case Settings.DIFICULTAD_HARD:
-						world_2_hard = true;
-						break;
-					case Settings.DIFICULTAD_SUPERHARD:
-						world_2_superHard = true;
-						break;
-				}
+			case Settings.DIFICULTAD_NORMAL:
+				world_1_normal = true;
 				break;
-			case 3:
-				switch (Settings.dificultadActual) {
-					case Settings.DIFICULTAD_EASY:
-						world_3_easy = true;
-						break;
-					case Settings.DIFICULTAD_NORMAL:
-						world_3_normal = true;
-						break;
-					case Settings.DIFICULTAD_HARD:
-						world_3_hard = true;
-						break;
-					case Settings.DIFICULTAD_SUPERHARD:
-						world_3_superHard = true;
-						break;
-				}
+			case Settings.DIFICULTAD_HARD:
+				world_1_hard = true;
 				break;
-			case 4:
-				switch (Settings.dificultadActual) {
-					case Settings.DIFICULTAD_EASY:
-						world_4_easy = true;
-						break;
-					case Settings.DIFICULTAD_NORMAL:
-						world_4_normal = true;
-						break;
-					case Settings.DIFICULTAD_HARD:
-						world_4_hard = true;
-						break;
-					case Settings.DIFICULTAD_SUPERHARD:
-						world_4_superHard = true;
-						break;
-				}
+			case Settings.DIFICULTAD_SUPERHARD:
+				world_1_superHard = true;
 				break;
-			case 5:
-				switch (Settings.dificultadActual) {
-					case Settings.DIFICULTAD_EASY:
-						world_5_easy = true;
-						break;
-					case Settings.DIFICULTAD_NORMAL:
-						world_5_normal = true;
-						break;
-					case Settings.DIFICULTAD_HARD:
-						world_5_hard = true;
-						break;
-					case Settings.DIFICULTAD_SUPERHARD:
-						world_5_superHard = true;
-						break;
-				}
+			}
+			break;
+		case 2:
+			switch (Settings.dificultadActual) {
+			case Settings.DIFICULTAD_EASY:
+				world_2_easy = true;
 				break;
-			case 6:
-				switch (Settings.dificultadActual) {
-					case Settings.DIFICULTAD_EASY:
-						world_6_easy = true;
-						break;
-					case Settings.DIFICULTAD_NORMAL:
-						world_6_normal = true;
-						break;
-					case Settings.DIFICULTAD_HARD:
-						world_6_hard = true;
-						break;
-					case Settings.DIFICULTAD_SUPERHARD:
-						world_6_superHard = true;
-						break;
-				}
+			case Settings.DIFICULTAD_NORMAL:
+				world_2_normal = true;
 				break;
-			case 7:
-				switch (Settings.dificultadActual) {
-					case Settings.DIFICULTAD_EASY:
-						world_7_easy = true;
-						break;
-					case Settings.DIFICULTAD_NORMAL:
-						world_7_normal = true;
-						break;
-					case Settings.DIFICULTAD_HARD:
-						world_7_hard = true;
-						break;
-					case Settings.DIFICULTAD_SUPERHARD:
-						world_7_superHard = true;
-						break;
-				}
+			case Settings.DIFICULTAD_HARD:
+				world_2_hard = true;
 				break;
-			case 8:
-				switch (Settings.dificultadActual) {
-					case Settings.DIFICULTAD_EASY:
-						world_8_easy = true;
-						break;
-					case Settings.DIFICULTAD_NORMAL:
-						world_8_normal = true;
-						break;
-					case Settings.DIFICULTAD_HARD:
-						world_8_hard = true;
-						break;
-					case Settings.DIFICULTAD_SUPERHARD:
-						world_8_superHard = true;
-						break;
-				}
+			case Settings.DIFICULTAD_SUPERHARD:
+				world_2_superHard = true;
 				break;
+			}
+			break;
+		case 3:
+			switch (Settings.dificultadActual) {
+			case Settings.DIFICULTAD_EASY:
+				world_3_easy = true;
+				break;
+			case Settings.DIFICULTAD_NORMAL:
+				world_3_normal = true;
+				break;
+			case Settings.DIFICULTAD_HARD:
+				world_3_hard = true;
+				break;
+			case Settings.DIFICULTAD_SUPERHARD:
+				world_3_superHard = true;
+				break;
+			}
+			break;
+		case 4:
+			switch (Settings.dificultadActual) {
+			case Settings.DIFICULTAD_EASY:
+				world_4_easy = true;
+				break;
+			case Settings.DIFICULTAD_NORMAL:
+				world_4_normal = true;
+				break;
+			case Settings.DIFICULTAD_HARD:
+				world_4_hard = true;
+				break;
+			case Settings.DIFICULTAD_SUPERHARD:
+				world_4_superHard = true;
+				break;
+			}
+			break;
+		case 5:
+			switch (Settings.dificultadActual) {
+			case Settings.DIFICULTAD_EASY:
+				world_5_easy = true;
+				break;
+			case Settings.DIFICULTAD_NORMAL:
+				world_5_normal = true;
+				break;
+			case Settings.DIFICULTAD_HARD:
+				world_5_hard = true;
+				break;
+			case Settings.DIFICULTAD_SUPERHARD:
+				world_5_superHard = true;
+				break;
+			}
+			break;
+		case 6:
+			switch (Settings.dificultadActual) {
+			case Settings.DIFICULTAD_EASY:
+				world_6_easy = true;
+				break;
+			case Settings.DIFICULTAD_NORMAL:
+				world_6_normal = true;
+				break;
+			case Settings.DIFICULTAD_HARD:
+				world_6_hard = true;
+				break;
+			case Settings.DIFICULTAD_SUPERHARD:
+				world_6_superHard = true;
+				break;
+			}
+			break;
+		case 7:
+			switch (Settings.dificultadActual) {
+			case Settings.DIFICULTAD_EASY:
+				world_7_easy = true;
+				break;
+			case Settings.DIFICULTAD_NORMAL:
+				world_7_normal = true;
+				break;
+			case Settings.DIFICULTAD_HARD:
+				world_7_hard = true;
+				break;
+			case Settings.DIFICULTAD_SUPERHARD:
+				world_7_superHard = true;
+				break;
+			}
+			break;
+		case 8:
+			switch (Settings.dificultadActual) {
+			case Settings.DIFICULTAD_EASY:
+				world_8_easy = true;
+				break;
+			case Settings.DIFICULTAD_NORMAL:
+				world_8_normal = true;
+				break;
+			case Settings.DIFICULTAD_HARD:
+				world_8_hard = true;
+				break;
+			case Settings.DIFICULTAD_SUPERHARD:
+				world_8_superHard = true;
+				break;
+			}
+			break;
 		}
 
 		prefAchiv.putBoolean("world_1_easy", world_1_easy);
@@ -459,26 +486,35 @@ public class Achievements {
 
 		// Ahora si checo los achivmentes
 		switch (Settings.dificultadActual) {
-			case Settings.DIFICULTAD_EASY:
-				if (world_1_easy && world_2_easy && world_3_easy && world_4_easy && world_5_easy && world_6_easy && world_7_easy && world_8_easy) {
-					gameServicesHandler.unlockAchievement(EASY); // Easy
-				}
-				break;
-			case Settings.DIFICULTAD_NORMAL:
-				if (world_1_normal && world_2_normal && world_3_normal && world_4_normal && world_5_normal && world_6_normal && world_7_normal && world_8_normal) {
-					gameServicesHandler.unlockAchievement(_18plus); // 18+
-				}
-				break;
-			case Settings.DIFICULTAD_HARD:
-				if (world_1_hard && world_2_hard && world_3_hard && world_4_hard && world_5_hard && world_6_hard && world_7_hard && world_8_hard) {
-					gameServicesHandler.unlockAchievement(BIG_LEAGES);// Big leagues
-				}
-				break;
-			case Settings.DIFICULTAD_SUPERHARD:
-				if (world_1_superHard && world_2_superHard && world_3_superHard && world_4_superHard && world_5_superHard && world_6_superHard && world_7_superHard && world_8_superHard) {
-					gameServicesHandler.unlockAchievement(_20_COOLER);// 20% Cooler
-				}
-				break;
+		case Settings.DIFICULTAD_EASY:
+			if (world_1_easy && world_2_easy && world_3_easy && world_4_easy
+					&& world_5_easy && world_6_easy && world_7_easy
+					&& world_8_easy) {
+				gameServicesHandler.unlockAchievement(EASY); // Easy
+			}
+			break;
+		case Settings.DIFICULTAD_NORMAL:
+			if (world_1_normal && world_2_normal && world_3_normal
+					&& world_4_normal && world_5_normal && world_6_normal
+					&& world_7_normal && world_8_normal) {
+				gameServicesHandler.unlockAchievement(_18plus); // 18+
+			}
+			break;
+		case Settings.DIFICULTAD_HARD:
+			if (world_1_hard && world_2_hard && world_3_hard && world_4_hard
+					&& world_5_hard && world_6_hard && world_7_hard
+					&& world_8_hard) {
+				gameServicesHandler.unlockAchievement(BIG_LEAGES);// Big leagues
+			}
+			break;
+		case Settings.DIFICULTAD_SUPERHARD:
+			if (world_1_superHard && world_2_superHard && world_3_superHard
+					&& world_4_superHard && world_5_superHard
+					&& world_6_superHard && world_7_superHard
+					&& world_8_superHard) {
+				gameServicesHandler.unlockAchievement(_20_COOLER);// 20% Cooler
+			}
+			break;
 		}
 
 	}

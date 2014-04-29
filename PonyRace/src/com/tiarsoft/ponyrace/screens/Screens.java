@@ -29,7 +29,7 @@ public abstract class Screens extends InputAdapter implements Screen {
 
 	public OrthographicCamera guiCam;
 
-	protected SkeletonRenderer skelrender;
+	public SkeletonRenderer skelrender;
 	protected TextBounds bounds;
 
 	protected Assets oAssets;

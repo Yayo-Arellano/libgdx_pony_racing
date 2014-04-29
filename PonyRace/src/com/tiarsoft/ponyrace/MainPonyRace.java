@@ -6,7 +6,6 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.tiarsoft.handlers.GameServicesHandler;
 import com.tiarsoft.handlers.RequestHandler;
-import com.tiarsoft.ponyrace.menuobjetos.DialogSingInGGS;
 import com.tiarsoft.ponyrace.screens.LoadingScreen;
 import com.tiarsoft.ponyrace.screens.MainMenuScreen;
 import com.tiarsoft.ponyrace.screens.Screens;
@@ -31,7 +30,6 @@ public class MainPonyRace extends Game {
 	public Stage stage;
 	public SpriteBatch batcher;
 	public Achievements achievements;
-	public DialogSingInGGS signin;
 
 	@Override
 	public void create() {
@@ -41,7 +39,6 @@ public class MainPonyRace extends Game {
 		stage = new Stage(new StretchViewport(Screens.SCREEN_WIDTH,
 				Screens.SCREEN_HEIGHT));
 		batcher = new SpriteBatch();
-		signin = new DialogSingInGGS(this, stage);
 		this.setScreen(new LoadingScreen(this, MainMenuScreen.class, 1));
 
 	}

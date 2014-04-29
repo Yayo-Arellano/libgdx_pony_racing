@@ -2,29 +2,29 @@ package com.tiarsoft.ponyrace.game;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
-import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
-import com.badlogic.gdx.scenes.scene2d.ui.Window.WindowStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.esotericsoftware.spine.Animation;
 import com.tiarsoft.handlers.AmazonGameServicesHandler;
 import com.tiarsoft.ponyrace.Assets;
 import com.tiarsoft.ponyrace.MainPonyRace;
-import com.tiarsoft.ponyrace.MainPonyRace.Tienda;
 import com.tiarsoft.ponyrace.Settings;
 import com.tiarsoft.ponyrace.game.objetos.Pony;
 import com.tiarsoft.ponyrace.menuobjetos.BotonNube;
+import com.tiarsoft.ponyrace.scene2d.Ventana;
+import com.tiarsoft.ponyrace.scene2d.VentanaNextLevel;
+import com.tiarsoft.ponyrace.scene2d.VentanaPause;
+import com.tiarsoft.ponyrace.scene2d.VentanaRate;
+import com.tiarsoft.ponyrace.scene2d.VentanaTimesUp;
+import com.tiarsoft.ponyrace.scene2d.VentanaTryAgain;
 import com.tiarsoft.ponyrace.screens.LoadingScreen;
 import com.tiarsoft.ponyrace.screens.Screens;
 import com.tiarsoft.ponyrace.screens.WorldMapTiledScreen;
@@ -42,13 +42,13 @@ public class GameScreenTileds extends Screens {
 	public final int MULTIPLICADOR_MONEDAS_TIME_LEFT;
 	// fin
 
-	WorldTiled oWorld;
+	public WorldTiled oWorld;
 	WorldTiledRenderer renderer;
 
 	Vector3 touchPoint;
 	State state;
 	boolean jump, fireBomb, fireWood;
-	int nivelTiled;
+	public int nivelTiled;
 
 	Button btIzq, btDer, btJump;
 	TextButton btFireBomb, btFireWood;
@@ -56,17 +56,18 @@ public class GameScreenTileds extends Screens {
 	Button btPausa;
 
 	// int monedasRecolectadas;
-	StringBuilder stringMonedasRecolectadas;
-
-	StringBuilder stringTiempoLeft;
-
-	StringBuilder lapTime;
+	public StringBuilder stringMonedasRecolectadas;
+	public StringBuilder stringTiempoLeft;
+	public StringBuilder lapTime;
 
 	String stringMundoActual;
 
 	float accelX;
 
 	boolean drawStatsEndRace;
+
+	VentanaRate vtRate;
+	VentanaPause vtPause;
 
 	public GameScreenTileds(MainPonyRace game, int nivelTiled) {
 		super(game);
@@ -136,6 +137,15 @@ public class GameScreenTileds extends Screens {
 		case 5:
 			MULTIPLICADOR_MONEDAS_TIME_LEFT = 5;
 			break;
+		}
+
+		vtPause = new VentanaPause(this);
+		vtRate = new VentanaRate(this);
+
+		if (Settings.seCalificoApp == false
+				&& Settings.statTimesPlayed % 5 == 0) {
+
+			vtRate.show(stage);
 		}
 
 	}
@@ -231,10 +241,6 @@ public class GameScreenTileds extends Screens {
 		if (Settings.numeroWoods > 0)
 			stage.addActor(btFireWood);
 
-		if (Settings.seCalificoApp == false
-				&& Settings.statTimesPlayed % 5 == 0) {
-			game.signin.showDialogRate();
-		}
 	}
 
 	@Override
@@ -255,7 +261,6 @@ public class GameScreenTileds extends Screens {
 			updateTimeUp(delta);
 			break;
 		case paused:
-			updatePaused(delta);
 			break;
 		case nextLevel:
 			updateNextLevel(delta);
@@ -268,7 +273,7 @@ public class GameScreenTileds extends Screens {
 	}
 
 	private void updateReady(float delta) {
-		if (Gdx.input.isTouched() && !game.signin.isDialogRateShown())
+		if (Gdx.input.isTouched() && !vtRate.isVisible())
 			state = State.running;
 	}
 
@@ -328,18 +333,22 @@ public class GameScreenTileds extends Screens {
 
 	private void setPuntuacionesGoogleGameServices() {
 
-		String idWorld1 = "CgkI55iksNMTEAIQAA";
-		String idWorld2 = "CgkI55iksNMTEAIQAw";
-		String idWorld3 = "CgkI55iksNMTEAIQBA";
-		String idWorld4 = "CgkI55iksNMTEAIQBQ";
-		String idWorld5 = "CgkI55iksNMTEAIQBg";
-		String idWorld6 = "CgkI55iksNMTEAIQMQ";
-		String idWorld7 = "CgkI55iksNMTEAIQMg";
-		String idWorld8 = "CgkI55iksNMTEAIQMw";
-		String idWorld9 = "CgkI55iksNMTEAIQNA";
-		String idWorld10 = "CgkI55iksNMTEAIQNQ";
-		String idWorld11 = "CgkI55iksNMTEAIQNg";
-		String idWorld12 = "CgkI55iksNMTEAIQNw";
+		String idWorld1 = "CgkIv7KCocYXEAIQAQ";
+		String idWorld2 = "CgkIv7KCocYXEAIQAg";
+		String idWorld3 = "CgkIv7KCocYXEAIQAw";
+		String idWorld4 = "CgkIv7KCocYXEAIQBA";
+		String idWorld5 = "CgkIv7KCocYXEAIQBQ";
+		String idWorld6 = "CgkIv7KCocYXEAIQBg";
+		String idWorld7 = "CgkIv7KCocYXEAIQBw";
+		String idWorld8 = "CgkIv7KCocYXEAIQCA";
+		String idWorld9 = "CgkIv7KCocYXEAIQCQ";
+		String idWorld10 = "CgkIv7KCocYXEAIQCg";
+		String idWorld11 = "CgkIv7KCocYXEAIQCw";
+		String idWorld12 = "CgkIv7KCocYXEAIQDA";
+		String idWorld13 = "CgkIv7KCocYXEAIQDQ";
+		String idWorld14 = "CgkIv7KCocYXEAIQDg";
+		String idWorld15 = "CgkIv7KCocYXEAIQDw";
+		String idWorld16 = "CgkIv7KCocYXEAIQEA";
 
 		if (game.gameServiceHandler instanceof AmazonGameServicesHandler) {
 			idWorld1 = "world1";
@@ -354,6 +363,10 @@ public class GameScreenTileds extends Screens {
 			idWorld10 = "world10";
 			idWorld11 = "world11";
 			idWorld12 = "world12";
+			idWorld13 = "world13";
+			idWorld14 = "world14";
+			idWorld15 = "world15";
+			idWorld16 = "world16";
 		}
 
 		if (state != State.running && state != State.paused
@@ -399,6 +412,22 @@ public class GameScreenTileds extends Screens {
 				game.gameServiceHandler
 						.submitScore(oWorld.tiempoLap, idWorld12);
 				break;
+			case 13:
+				game.gameServiceHandler
+						.submitScore(oWorld.tiempoLap, idWorld13);
+				break;
+			case 14:
+				game.gameServiceHandler
+						.submitScore(oWorld.tiempoLap, idWorld14);
+				break;
+			case 15:
+				game.gameServiceHandler
+						.submitScore(oWorld.tiempoLap, idWorld15);
+				break;
+			case 16:
+				game.gameServiceHandler
+						.submitScore(oWorld.tiempoLap, idWorld16);
+				break;
 
 			}
 
@@ -409,13 +438,10 @@ public class GameScreenTileds extends Screens {
 
 	}
 
-	private void updatePaused(float delta) {
-	}
-
 	private void updateNextLevel(float delta) {
 		oWorld.update(delta, renderer);
 
-		if (ScreenStateTime >= oAssets.finCarreraAnimacion1Lugar.getDuration()) {
+		if (ScreenStateTime >= Ventana.DURACION_ANIMATION + .2f) {
 			drawStatsEndRace = true;
 			giveCoinsAfterfinish(delta);
 		}
@@ -425,7 +451,7 @@ public class GameScreenTileds extends Screens {
 	private void updateTryAgain(float delta) {
 		oWorld.update(delta, renderer);
 
-		if (ScreenStateTime >= oAssets.finCarreraAnimacion2Lugar.getDuration()) {
+		if (ScreenStateTime >= Ventana.DURACION_ANIMATION + .2f) {
 			drawStatsEndRace = true;
 			giveCoinsAfterfinish(delta);
 		}
@@ -440,9 +466,16 @@ public class GameScreenTileds extends Screens {
 			time_left_coin -= GET_COIN_FOR_TIME_LEFT;
 			oWorld.tiempoLeft--;
 			oWorld.oPony.monedasRecolectadas += MULTIPLICADOR_MONEDAS_TIME_LEFT;
+
+			stringMonedasRecolectadas.delete(0,
+					stringMonedasRecolectadas.length());
 			stringMonedasRecolectadas.delete(0,
 					stringMonedasRecolectadas.length());
 			stringMonedasRecolectadas.append(oWorld.oPony.monedasRecolectadas);
+
+			stringTiempoLeft.delete(0, stringTiempoLeft.length());
+			stringTiempoLeft.append((int) oWorld.tiempoLeft);
+
 			Settings.sumarMonedas(MULTIPLICADOR_MONEDAS_TIME_LEFT);
 			game.oAssets.playSound(game.oAssets.pickCoin);
 		}
@@ -467,24 +500,20 @@ public class GameScreenTileds extends Screens {
 		batcher.enableBlending();
 		batcher.begin();
 		switch (state) {
-		default:
 		case ready:
 			presentReady(delta);
 			break;
 		case running:
 			presentRunning(delta);
 			break;
-		case timeUp:
-			presentTimeUp(delta);
-			break;
-		case paused:
-			presentPaused(delta);
+
+		case tryAgain:
 			break;
 		case nextLevel:
-			presentNextLevel(delta);
 			break;
-		case tryAgain:
-			presentTryAgain(delta);
+		case paused:
+			break;
+		case timeUp:
 			break;
 
 		}
@@ -493,7 +522,7 @@ public class GameScreenTileds extends Screens {
 
 		stage.act();
 		stage.draw();
-		// Table.drawDebug(stage);
+		Table.drawDebug(stage);
 
 	}
 
@@ -573,92 +602,22 @@ public class GameScreenTileds extends Screens {
 				- bounds.width / 2, alturaIndicador - 32);
 
 		// fin
+		oAssets.fontChco.draw(batcher, lapTime, 0, 225);
 
-		oAssets.fontChco.draw(batcher,
-				"FPS=" + Gdx.graphics.getFramesPerSecond(), 0, 225);
-		// oAssets.fontChco.draw(batcher, "Posicion " + oWorld.oPony.lugarEnLaCarrera, 0, 220);
-		oAssets.fontChco.draw(batcher, lapTime, 0, 190);
+		if (Assets.drawDebugLines)
+			oAssets.fontChco.draw(batcher,
+					"FPS=" + Gdx.graphics.getFramesPerSecond(), 0, 190);
 	}
 
 	AtlasRegion pixelNegro;
 	float duration = 1.5f;
 	float curFade = 0;
 
-	private void presentTimeUp(float delta) {
-
-		oAssets.finCarreraAnimacionTimesUp.apply(oAssets.finCarreraSkeleton,
-				ScreenlastStatetime, ScreenStateTime, false, null);
-		oAssets.finCarreraSkeleton.setX(SCREEN_WIDTH / 2f);
-		oAssets.finCarreraSkeleton.setY(SCREEN_HEIGHT / 2f);
-		oAssets.finCarreraSkeleton.updateWorldTransform();
-		oAssets.finCarreraSkeleton.update(delta);
-		skelrender.draw(batcher, oAssets.finCarreraSkeleton);
-
-	}
-
-	private void presentPaused(float delta) {
-
-	}
-
-	private void presentNextLevel(float delta) {
-
-		oAssets.finCarreraAnimacion1Lugar.apply(oAssets.finCarreraSkeleton,
-				ScreenlastStatetime, ScreenStateTime, false, null);
-		oAssets.finCarreraSkeleton.setX(SCREEN_WIDTH / 2f);
-		oAssets.finCarreraSkeleton.setY(SCREEN_HEIGHT / 2f);
-		oAssets.finCarreraSkeleton.updateWorldTransform();
-		oAssets.finCarreraSkeleton.update(delta);
-		skelrender.draw(batcher, oAssets.finCarreraSkeleton);
-		if (drawStatsEndRace)
-			dibujarStatsEndGame();
-
-	}
-
-	private void presentTryAgain(float delta) {
-		Animation anim;
-		if (oWorld.oPony.lugarEnLaCarrera == 2)
-			anim = oAssets.finCarreraAnimacion2Lugar;
-		else if (oWorld.oPony.lugarEnLaCarrera == 3)
-			anim = oAssets.finCarreraAnimacion3Lugar;
-		else
-			anim = oAssets.finCarreraAnimacionGameOver;
-		anim.apply(oAssets.finCarreraSkeleton, ScreenlastStatetime,
-				ScreenStateTime, false, null);
-		oAssets.finCarreraSkeleton.setX(SCREEN_WIDTH / 2f);
-		oAssets.finCarreraSkeleton.setY(SCREEN_HEIGHT / 2f);
-		oAssets.finCarreraSkeleton.updateWorldTransform();
-		oAssets.finCarreraSkeleton.update(delta);
-		skelrender.draw(batcher, oAssets.finCarreraSkeleton);
-		if (drawStatsEndRace)
-			dibujarStatsEndGame();
-
-	}
-
-	private void dibujarStatsEndGame() {
-		oAssets.fontChco.draw(batcher, "LapTime", 270, 160);
-		oAssets.fontChco.draw(batcher, lapTime, 420, 160);
-		oAssets.fontChco.draw(batcher, "Time Left", 270, 130);
-		oAssets.fontChco.draw(batcher, (int) oWorld.tiempoLeft + "", 420, 130);
-
-		// Dibujar Monedas
-		batcher.draw(oAssets.moneda, 360, 70, 30, 30);
-		oAssets.fontChco.draw(batcher, stringMonedasRecolectadas, 420, 97);
-		// fin
-	}
-
 	private void setTimeUp() {
 		state = State.timeUp;
 		ScreenStateTime = 0;
 		stage.clear();
-
-		btTryAgain.setPosition(5, 5);
-		btMainMenu.setPosition(645, 5);
-
-		stage.addActor(btMainMenu);
-
-		if (nivelTiled != 1000)// Si es el mundo secreto no agrego el try again
-			stage.addActor(btTryAgain);
-		game.reqHandler.showAdBanner();
+		new VentanaTimesUp(this).show(stage);
 	}
 
 	public void setNextLevel() {
@@ -669,12 +628,13 @@ public class GameScreenTileds extends Screens {
 		btTryAgain.setPosition(5, 5);
 		btNextLevel.setPosition(645, 5);
 
-		stage.addActor(btNextLevel);
-		stage.addActor(btTryAgain);
+		new VentanaNextLevel(this).show(stage);
 
-		if (game.tiendaActual != Tienda.appStore)
-			game.signin.showDialogShareOnFacebook("");
-		game.reqHandler.showAdBanner();
+		stage.addActor(btNextLevel);
+
+		if (nivelTiled != 1000)// Si es el mundo secreto no agrego el try again
+			stage.addActor(btTryAgain);
+
 	}
 
 	public void setTryAgain() {
@@ -685,38 +645,23 @@ public class GameScreenTileds extends Screens {
 		btTryAgain.setPosition(5, 5);
 		btMainMenu.setPosition(645, 5);
 
+		new VentanaTryAgain(this).show(stage);
+
 		stage.addActor(btMainMenu);
-		stage.addActor(btTryAgain);
-		game.reqHandler.showAdBanner();
+		if (nivelTiled != 1000)// Si es el mundo secreto no agrego el try again
+			stage.addActor(btTryAgain);
+	}
+
+	public void setRunning() {
+		setBotonesInterfaz();
+		state = State.running;
+
 	}
 
 	public void setPause() {
 		state = State.paused;
 		stage.clear();
-		WindowStyle windowStyle = new WindowStyle(oAssets.fontGde, Color.WHITE,
-				oAssets.fondoVentanaPause);
-
-		Dialog dialogPause = new Dialog("", windowStyle);
-		dialogPause.setTouchable(Touchable.childrenOnly);
-		Table content = dialogPause.getContentTable();
-
-		btSonido.setPosition(285, 25);
-		btMusica.setPosition(432, 25);
-
-		content.defaults().padLeft(50).padRight(50);
-		content.add(btContinue).expandX().padTop(125).colspan(2);
-		content.row();
-		if (nivelTiled != 1000)// si es secreto no agrego el try again
-			content.add(btTryAgain).padBottom(45).padTop(10);
-		content.add(btMainMenu).padBottom(45).padTop(10);
-
-		// content.debug();
-		// dialogPause.debug();
-		dialogPause.show(stage);
-
-		stage.addActor(btSonido);
-		stage.addActor(btMusica);
-		game.reqHandler.showAdBanner();
+		vtPause.show(stage);
 
 	}
 
@@ -754,9 +699,7 @@ public class GameScreenTileds extends Screens {
 						btContinue.accionInicial, Actions.run(new Runnable() {
 							@Override
 							public void run() {
-								game.reqHandler.hideAdBanner();
-								setBotonesInterfaz();
-								state = State.running;
+								setRunning();
 
 							}
 						})));
@@ -872,8 +815,6 @@ public class GameScreenTileds extends Screens {
 
 		// El Ad se mostrara cada 5 veces
 		int tiempoAds = 4;
-		if (game.tiendaActual == Tienda.appStore)
-			tiempoAds = 3;
 
 		if (Settings.statTimesPlayed % tiempoAds == 0) {
 			game.reqHandler.showInterstitial();

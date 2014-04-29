@@ -311,6 +311,11 @@ public class WorldMapTiledScreen extends Screens implements GestureListener {
 			oAssets.bolaSkeleton.update(delta);
 			skelrender.draw(batcher, oAssets.bolaSkeleton);
 
+			oAssets.fontChco.setScale(.0125f);
+			oAssets.fontChco.draw(batcher, arrMundos.get(i).level + "",
+					x - .25f, y + .2f);
+			oAssets.fontChco.setScale(.6f);
+
 		}
 		if (Settings.isEnabledSecretWorld) {
 			oAssets.rayoAnim.apply(oAssets.rayoSkeleton, ScreenlastStatetime,

@@ -96,6 +96,9 @@ public class Assets extends AssetManager {
 		btMusicaOff = new NinePatchDrawable(new NinePatch(
 				atlas.findRegion("musicoffpausa")));
 
+		fondoVentanas = new NinePatchDrawable(new NinePatch(
+				atlas.createPatch("fondoVentana")));
+
 		int size = 80;
 		btSonidoOff.setMinHeight(size);
 		btSonidoOff.setMinWidth(size);
@@ -395,12 +398,12 @@ public class Assets extends AssetManager {
 	public Skeleton bloodStone2Skeleton;
 	public Animation bloodStone2Anim;
 
-	public Skeleton finCarreraSkeleton;
-	public Animation finCarreraAnimacion1Lugar;
-	public Animation finCarreraAnimacion2Lugar;
-	public Animation finCarreraAnimacion3Lugar;
-	public Animation finCarreraAnimacionTimesUp;
-	public Animation finCarreraAnimacionGameOver;
+	public AtlasRegion medallaPrimerLugar;
+	public AtlasRegion medallaSegundoLugar;
+	public AtlasRegion medallaTercerLugar;
+	public AtlasRegion congratulations;
+	public AtlasRegion youLose;
+	public AtlasRegion timeUp;
 
 	public NinePatchDrawable padIzq;
 	public NinePatchDrawable padDer;
@@ -415,7 +418,7 @@ public class Assets extends AssetManager {
 
 	public NinePatchDrawable btPauseUp;
 
-	public NinePatchDrawable fondoVentanaPause;
+	public NinePatchDrawable fondoVentanas;
 
 	public AtlasRegion indicador;
 	public AtlasRegion indicadorCloud;
@@ -598,15 +601,12 @@ public class Assets extends AssetManager {
 		dulceAnim = dulceSkeletonData.findAnimation("normal");
 		dulceTomadaAnim = dulceSkeletonData.findAnimation("speedup");
 
-		json.setScale(1f);
-		SkeletonData skeletonData = json.readSkeletonData(Gdx.files
-				.internal("data/animaciones/alterminar.json"));
-		finCarreraAnimacion1Lugar = skeletonData.findAnimation("1stplace");
-		finCarreraAnimacion2Lugar = skeletonData.findAnimation("2ndplace");
-		finCarreraAnimacion3Lugar = skeletonData.findAnimation("3rdplace");
-		finCarreraAnimacionTimesUp = skeletonData.findAnimation("timeup");
-		finCarreraAnimacionGameOver = skeletonData.findAnimation("youlose");
-		finCarreraSkeleton = new Skeleton(skeletonData);
+		medallaPrimerLugar = atlas.findRegion("imagenes/podio/1stplacetrophy");
+		medallaSegundoLugar = atlas.findRegion("imagenes/podio/2ndplace");
+		medallaTercerLugar = atlas.findRegion("imagenes/podio/3rdplace");
+		congratulations = atlas.findRegion("imagenes/podio/congratulations");
+		youLose = atlas.findRegion("imagenes/podio/youlose");
+		timeUp = atlas.findRegion("imagenes/podio/timeup");
 
 		// json.setScale(.003f);
 		// SkeletonData fuegoSkeletonData = json.readSkeletonData(Gdx.files.internal("data/animaciones/bombs.json"));
@@ -664,9 +664,6 @@ public class Assets extends AssetManager {
 
 		btPauseUp = new NinePatchDrawable(new NinePatch(
 				atlas.findRegion("Interfaz/pause")));
-
-		fondoVentanaPause = new NinePatchDrawable(new NinePatch(
-				atlas.findRegion("Interfaz/pausa")));
 
 		indicador = atlas.findRegion("Interfaz/indicador");
 		indicadorCloud = atlas.findRegion("Interfaz/icono000");
