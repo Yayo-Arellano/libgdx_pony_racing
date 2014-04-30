@@ -42,7 +42,7 @@ public class Main {
 		// }
 		// });
 
-		new LwjglApplication(new MainPonyRace(Tienda.none, handler,
+		new LwjglApplication(new MainPonyRace(Tienda.otros, handler,
 				gameServicesHandler), cfg);
 
 	}

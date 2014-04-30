@@ -52,12 +52,12 @@ public class Achievements {
 
 		}
 		else {
-			EASY = "easy";
-			_18plus = "18plus";
-			BIG_LEAGES = "bigleagues";
-			_20_COOLER = "20Cooler";
-			FASTER_THAN_THE_MAKER = "fasterThanTheMaker";
-			I_WORK_OUT = "iworkout";
+			EASY = "20216";
+			_18plus = "20218";
+			BIG_LEAGES = "20220";
+			_20_COOLER = "20222";
+			FASTER_THAN_THE_MAKER = "20224";
+			I_WORK_OUT = "20226";
 		}
 
 	}

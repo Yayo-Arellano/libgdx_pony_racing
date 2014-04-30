@@ -352,23 +352,23 @@ public class GameScreenTileds extends Screens {
 		String idWorld17 = "CgkIv7KCocYXEAIQFA";
 
 		if (game.gameServiceHandler instanceof AmazonGameServicesHandler) {
-			idWorld1 = "world1";
-			idWorld2 = "world2";
-			idWorld3 = "world3";
-			idWorld4 = "world4";
-			idWorld5 = "world5";
-			idWorld6 = "world6";
-			idWorld7 = "world7";
-			idWorld8 = "world8";
-			idWorld9 = "world9";
-			idWorld10 = "world10";
-			idWorld11 = "world11";
-			idWorld12 = "world12";
-			idWorld13 = "world13";
-			idWorld14 = "world14";
-			idWorld15 = "world15";
-			idWorld16 = "world16";
-			idWorld17 = "world17";
+			idWorld1 = "16000";
+			idWorld2 = "16002";
+			idWorld3 = "16004";
+			idWorld4 = "16006";
+			idWorld5 = "16008";
+			idWorld6 = "16010";
+			idWorld7 = "16012";
+			idWorld8 = "16014";
+			idWorld9 = "16016";
+			idWorld10 = "16018";
+			idWorld11 = "16020";
+			idWorld12 = "16022";
+			idWorld13 = "16024";
+			idWorld14 = "16026";
+			idWorld15 = "16028";
+			idWorld16 = "16030";
+			idWorld17 = "16032";
 		}
 
 		if (state != State.running && state != State.paused

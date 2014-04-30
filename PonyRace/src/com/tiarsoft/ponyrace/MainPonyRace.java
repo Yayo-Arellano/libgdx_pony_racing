@@ -12,7 +12,7 @@ import com.tiarsoft.ponyrace.screens.Screens;
 
 public class MainPonyRace extends Game {
 	public enum Tienda {
-		googlePlay, amazon, slideMe, none, samsung, appStore
+		googlePlay, amazon, slideMe, samsung, appStore, otros
 	}
 
 	final public RequestHandler reqHandler;
