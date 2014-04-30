@@ -45,9 +45,8 @@ public class Settings {
 	public static int nivelTime = 0;
 
 	public static boolean isBackGroundEnabled = true;
-
-	private final static String prefName = "com.tiarsoft.ponyRace.settings";
-	private final static Preferences pref = Gdx.app.getPreferences(prefName);
+	private final static Preferences pref = Gdx.app
+			.getPreferences("com.tiarsoft.ponyRace.settings");
 
 	public static void cargar() {
 		isSonidoON = pref.getBoolean("isSonidoON", true);

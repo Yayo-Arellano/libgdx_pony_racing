@@ -10,7 +10,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.tiarsoft.handlers.GoogleGameServicesHandler;
 import com.tiarsoft.ponyrace.MainPonyRace;
 import com.tiarsoft.ponyrace.MainPonyRace.Tienda;
 import com.tiarsoft.ponyrace.Settings;
@@ -105,17 +104,11 @@ public class MainMenuScreen extends Screens {
 						Actions.run(new Runnable() {
 							@Override
 							public void run() {
-								if (game.gameServiceHandler instanceof GoogleGameServicesHandler) {
-									if (!game.gameServiceHandler.isSignedIn())
-										game.gameServiceHandler.signIn();
-									else
-										game.setScreen(new LoadingScreen(game,
-												LeaderboardChooseScreen.class));
-								}
-								else {
+								if (!game.gameServiceHandler.isSignedIn())
+									game.gameServiceHandler.signIn();
+								else
 									game.setScreen(new LoadingScreen(game,
 											LeaderboardChooseScreen.class));
-								}
 
 							}
 						})));

@@ -12,7 +12,9 @@ import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.tiarsoft.ponyrace.Settings;
 import com.tiarsoft.ponyrace.game.GameScreenTileds;
+import com.tiarsoft.ponyrace.screens.LoadingScreen;
 import com.tiarsoft.ponyrace.screens.Screens;
+import com.tiarsoft.ponyrace.screens.WorldMapTiledScreen;
 
 public class VentanaNextLevel extends Ventana {
 
@@ -74,7 +76,14 @@ public class VentanaNextLevel extends Ventana {
 		btShare.addListener(new ClickListener() {
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
-				game.reqHandler.shareOnFacebook("");
+				hide();
+				game.reqHandler.shareOnFacebook("I just made "
+						+ gameScreen.lapTime
+						+ " seconds playing Pony Racing, can you bet my time?");
+				game.setScreen(new LoadingScreen(game,
+						WorldMapTiledScreen.class));
+				screen.dispose();
+
 			}
 		});
 

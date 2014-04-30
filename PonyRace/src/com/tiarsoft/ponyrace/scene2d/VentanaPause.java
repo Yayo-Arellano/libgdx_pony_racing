@@ -39,6 +39,7 @@ public class VentanaPause extends Ventana {
 						btResume.accionInicial, Actions.run(new Runnable() {
 							@Override
 							public void run() {
+								hide();
 								gameScreen.setRunning();
 
 							}
@@ -57,9 +58,11 @@ public class VentanaPause extends Ventana {
 						btTryAgain.accionInicial, Actions.run(new Runnable() {
 							@Override
 							public void run() {
+								hide();
 								game.setScreen(new LoadingScreen(game,
 										GameScreenTileds.class,
 										gameScreen.nivelTiled));
+
 							}
 						})));
 			};
@@ -76,6 +79,7 @@ public class VentanaPause extends Ventana {
 						btMainMenu.accionInicial, Actions.run(new Runnable() {
 							@Override
 							public void run() {
+								hide();
 								game.setScreen(new LoadingScreen(game,
 										WorldMapTiledScreen.class));
 								screen.dispose();

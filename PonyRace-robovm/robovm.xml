@@ -21,6 +21,9 @@
 			<skipPngCrush>true</skipPngCrush>
 		</resource>
 	</resources>
+	<forceLinkClasses>
+		<pattern>com.badlogic.gdx.scenes.scene2d.ui.*</pattern>
+	</forceLinkClasses>
 	<libs>
 		<lib>libs/ios/libgdx.a</lib>
 		<lib>libs/ios/libObjectAL.a</lib>
@@ -29,9 +32,6 @@
 		<lib>libs/PlayGameServices.a</lib>
 		<lib>libs/libmopub.a</lib>
 	</libs>
-	<forceLinkClasses>
-		<pattern>com.badlogic.gdx.scenes.scene2d.ui.*</pattern>
-	</forceLinkClasses>
 	<frameworks>
 		<framework>UIKit</framework>
 		<framework>OpenGLES</framework>
@@ -43,25 +43,31 @@
 
 		<framework>AssetsLibrary</framework>
 		<framework>CoreData</framework>
-		<framework>CoreLocation</framework>
 		<framework>CoreMotion</framework>
 		<framework>CoreText</framework>
-		<framework>MediaPlayer</framework>
-		<framework>Security</framework>
-		<framework>SystemConfiguration</framework>
 
+		<framework>AddressBook</framework>
+		<framework>AddressBookUI</framework>
+		<framework>CoreLocation</framework>
+		<framework>CoreMedia</framework>
 		<framework>CoreTelephony</framework>
 		<framework>EventKit</framework>
 		<framework>EventKitUI</framework>
 		<framework>iAd</framework>
+		<framework>MediaPlayer</framework>
 		<framework>MessageUI</framework>
 		<framework>MobileCoreServices</framework>
+		<framework>Security</framework>
+		<framework>SystemConfiguration</framework>
+
+		<framework>Foundation</framework>
+		<framework>StoreKit</framework>
+
 	</frameworks>
 	<weakFrameworks>
 		<framework>AdSupport</framework>
 		<framework>PassKit</framework>
 		<framework>Social</framework>
-		<framework>StoreKit</framework>
 		<framework>Twitter</framework>
 	</weakFrameworks>
 </config>

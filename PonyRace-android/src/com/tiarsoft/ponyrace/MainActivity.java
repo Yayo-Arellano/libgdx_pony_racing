@@ -102,7 +102,6 @@ public class MainActivity extends AndroidApplication implements RequestHandler {
 	@Override
 	public void showFacebook() {
 		runOnUiThread(new Runnable() {
-
 			@Override
 			public void run() {
 				try {
@@ -120,9 +119,9 @@ public class MainActivity extends AndroidApplication implements RequestHandler {
 
 	@Override
 	public void shareOnTwitter(String mensaje) {
-		String tweetUrl = "https://twitter.com/intent/tweet?text=" + mensaje
-				+ " Download it from &url="
-				+ "http://goo.gl/h1Msy7&hashtags=PonyRacing";
+		String tweetUrl = "https://twitter.com/intent/tweet?text="
+				+ mensaje
+				+ " Download it from &url=http://goo.gl/R9hajS&hashtags=PonyRacing";
 		Gdx.net.openURI(tweetUrl);
 
 	}
@@ -140,7 +139,7 @@ public class MainActivity extends AndroidApplication implements RequestHandler {
 			linkTienda = "sam://search?q=yayo28";
 		}
 		else
-			linkTienda = "market://developer?id=TiarSoft";
+			linkTienda = "http://play.google.com/store/search?q=pub:Tiar";
 		Gdx.net.openURI(linkTienda);
 	}
 

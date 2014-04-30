@@ -34,8 +34,9 @@ public class VentanaRate extends Ventana {
 		btRate.addListener(new ClickListener() {
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
-				game.reqHandler.showRater();
 				hide();
+				game.reqHandler.showRater();
+				
 
 			}
 		});

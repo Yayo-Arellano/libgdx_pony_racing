@@ -349,6 +349,7 @@ public class GameScreenTileds extends Screens {
 		String idWorld14 = "CgkIv7KCocYXEAIQDg";
 		String idWorld15 = "CgkIv7KCocYXEAIQDw";
 		String idWorld16 = "CgkIv7KCocYXEAIQEA";
+		String idWorld17 = "CgkIv7KCocYXEAIQFA";
 
 		if (game.gameServiceHandler instanceof AmazonGameServicesHandler) {
 			idWorld1 = "world1";
@@ -367,6 +368,7 @@ public class GameScreenTileds extends Screens {
 			idWorld14 = "world14";
 			idWorld15 = "world15";
 			idWorld16 = "world16";
+			idWorld17 = "world17";
 		}
 
 		if (state != State.running && state != State.paused
@@ -427,6 +429,10 @@ public class GameScreenTileds extends Screens {
 			case 16:
 				game.gameServiceHandler
 						.submitScore(oWorld.tiempoLap, idWorld16);
+				break;
+			case 17:
+				game.gameServiceHandler
+						.submitScore(oWorld.tiempoLap, idWorld17);
 				break;
 
 			}
@@ -814,7 +820,7 @@ public class GameScreenTileds extends Screens {
 		super.hide();
 
 		// El Ad se mostrara cada 5 veces
-		int tiempoAds = 4;
+		int tiempoAds = 6;
 
 		if (Settings.statTimesPlayed % tiempoAds == 0) {
 			game.reqHandler.showInterstitial();

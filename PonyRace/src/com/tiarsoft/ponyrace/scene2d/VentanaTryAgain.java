@@ -25,8 +25,6 @@ public class VentanaTryAgain extends Ventana {
 		gameScreen = (GameScreenTileds) currentScreen;
 		oWorld = gameScreen.oWorld;
 
-		oWorld.oPony.lugarEnLaCarrera = 10;
-
 		Image medalla = null;
 		if (oWorld.oPony.lugarEnLaCarrera == 2)
 			medalla = new Image(oAssets.medallaSegundoLugar);

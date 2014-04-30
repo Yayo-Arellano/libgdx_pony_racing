@@ -2,6 +2,7 @@ package com.tiarsoft.ponyrace.screens;
 
 import com.badlogic.gdx.graphics.Color;
 import com.tiarsoft.ponyrace.MainPonyRace;
+import com.tiarsoft.ponyrace.MainPonyRace.Tienda;
 import com.tiarsoft.ponyrace.game.GameScreenTileds;
 
 public class LoadingScreen extends Screens {
@@ -39,7 +40,10 @@ public class LoadingScreen extends Screens {
 		}
 		else if (clase == WorldMapTiledScreen.class) {
 			oAssets.loadMenus();
-			game.reqHandler.showAdBanner();
+			if (game.tiendaActual == Tienda.appStore)// POr un bug que bloquea la interfaz en el esta pantalla solo en iOS
+				game.reqHandler.hideAdBanner();
+			else
+				game.reqHandler.showAdBanner();
 
 		}
 		else if (clase == ShopScreen.class) {

@@ -9,4 +9,9 @@ public class PonyPlayer extends Pony {
 
 	}
 
+	// @Override
+	// public void update(float delta, Body obj, float accelX) {
+	// isChile = true;
+	// super.update(delta, obj, accelX);
+	// }
 }

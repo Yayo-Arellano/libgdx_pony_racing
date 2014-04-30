@@ -38,9 +38,11 @@ public class VentanaTimesUp extends Ventana {
 						btTryAgain.accionInicial, Actions.run(new Runnable() {
 							@Override
 							public void run() {
+								hide();
 								game.setScreen(new LoadingScreen(game,
 										GameScreenTileds.class,
 										gameScreen.nivelTiled));
+
 							}
 						})));
 			};
@@ -58,6 +60,7 @@ public class VentanaTimesUp extends Ventana {
 						btMainMenu.accionInicial, Actions.run(new Runnable() {
 							@Override
 							public void run() {
+								hide();
 								game.setScreen(new LoadingScreen(game,
 										WorldMapTiledScreen.class));
 								screen.dispose();

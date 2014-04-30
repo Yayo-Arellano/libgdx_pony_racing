@@ -27,8 +27,8 @@ public class MainActivityFacebook extends MainActivity {
 				// .setNamespace("")
 				.setPermissions(permissions).build();
 
-		privacy = new Privacy.Builder()
-				.setPrivacySettings(PrivacySettings.SELF).build();
+		privacy = new Privacy.Builder().setPrivacySettings(
+				PrivacySettings.EVERYONE).build();
 
 		SimpleFacebook.setConfiguration(configuration);
 		oFacebook = SimpleFacebook.getInstance(this);
@@ -55,11 +55,11 @@ public class MainActivityFacebook extends MainActivity {
 							.setDescription(
 									"Everyone loves to play racing games! so spend unforgettable time and experience a new kind of racing journey to become the FASTEST PONY RACER ever!")
 							.setPicture(
-									"https://dl.dropboxusercontent.com/u/78073642/PonyRace/150x150.PNG")
+									"https://dl.dropboxusercontent.com/u/78073642/IconosWeb/ponyRace.png")
 							.addProperty("Also available for iOS", "Download",
 									"https://itunes.apple.com/us/app/pony-racing/id776425427?ls=1&mt=8")
 							.setLink(
-									"https://play.google.com/store/apps/details?id=com.tiarsoft.ponyrace")
+									"https://play.google.com/store/apps/details?id=com.tiarsoft.ponyracing")
 							.addAction("Tiarsoft",
 									"https://www.facebook.com/Tiarsoft")
 							.setPrivacy(privacy)//
